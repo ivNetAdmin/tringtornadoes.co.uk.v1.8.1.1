@@ -1,0 +1,36 @@
+﻿@using ivNet.Webstore.ViewModels
+@{
+    var login = (LoginVM)Model.Login;
+}
+
+<h2>@T("Returning customer")</h2>
+<p>@T("Please login using the form below")</p>
+
+@Html.ValidationSummary()
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("Login", "Checkout", new { area = "ivNet.Webstore" }))) {
+    
+    <article class="form">
+            
+        <fieldset>
+            <ul>
+                <li>@Html.EditorFor(m => login.Email)</li>
+                <li>@Html.EditorFor(m => login.Password)</li>
+            </ul>
+        </fieldset>
+    
+        <fieldset>
+            <ul>
+                <li>@Html.EditorFor(m => login.CreatePersistentCookie)</li>
+            </ul>
+        </fieldset>
+    
+        <footer class="commands">
+            <ul>
+                <li class="align left"><a href="#">@T("Cancel")</a></li>
+                <li class="align right"><button type="submit">@T("Next")</button></li>
+            </ul>
+        </footer>
+    
+    </article>
+}

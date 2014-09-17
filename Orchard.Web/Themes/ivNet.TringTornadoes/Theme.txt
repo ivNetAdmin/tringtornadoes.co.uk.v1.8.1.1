@@ -1,0 +1,8 @@
+Name: ivNet.TringTornadoes
+Author: ivNet Ltd
+Website: http://www.ivnet.co.uk
+Description: Tring Tornadoes Junior Sports Club theme based on PJS.Bootstrap
+Version: 1.0
+BaseTheme: PJS.Bootstrap
+# todo: provide tags
+# Tags: Classic, Serif

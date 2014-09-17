@@ -1,0 +1,37 @@
+1. Create Orchard project
+2. Rename Orchard.sln -> tringtornadoes.co.uk
+3. Open solution file
+4. Edit Orchard.Web properties -> create Virtual Directory "http://localhost:30421"
+5. Run website and configure new Orchard CMS site
+6. Go to Dashboard->Settings and add en-GB culture, set website culture to en-GB
+7. Go to Dashboard->Themes->Gallery->Search "Bootstrap"
+8. Install "PJS.Bootstrap - Version: 3.2.0"
+9. Close Website
+9. Run CMD window
+10. Go to Orchard.Web/bin directory (eg. cd C:\Users\Brian\Source\Repos\tringtornadoes.co.uk.v1.8.1.1\src\Orchard.Web\bin)
+11. Run Orchard
+12. Enable code generation -> 
+    feature enable Orchard.CodeGeneration
+13. Create theme "ivNet.TringTornadoes" based on PJS.Bootstrap ->
+    codegen theme ivNet.TringTornadoes /CreateProject:true /IncludeInSolution:true /BasedOn:PJS.Bootstrap
+14. Create module "ivNet.WebStore" ->
+    codegen module ivNet.WebStore /IncludeInSolution:true
+15. Include theme PJS.Bootstrap in the Themes project (right-click "Include in project")
+16. Add ivNet.TringTornadoes projec (cproj) to Themes directory ->
+    Themes->Add->Existing Project->(Browser) ivNet.TringTornadoes
+17. Add ivNet.WebStore module ->
+    Modules->Add->Existing Project->(Browser) ivNet.WebStore
+18. Edit ivNet.TringTornadoes->Theme.txt
+19. Edit ivNet.WebStore->Module.txt
+20. Build/Run website
+21. Enable ivNet.TringTornadoes theme
+22. Extract Orchard.Webshop to dump directory
+23. Copy module files to empty ivNet.Webstore in tringtornadoes.co.uk solution
+24. Rename all namespaces from Orchard.Webshop->ivNet.Webstore
+25. Build ivNet.Webstore
+26. Create some store items by adding the productPart to the new content type
+27. Create Query
+28. Create "Shop" Projection
+29. Add Shopping Cart Widget
+30. Save Database (Orchard.sdf) - Good place to test cxreating accounts and orders, etc
+

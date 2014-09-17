@@ -1,0 +1,13 @@
+﻿@model ivNet.Webstore.ViewModels.AddressVM
+
+<fieldset>
+    <legend>@ViewData.ModelMetadata.GetDisplayName()</legend>
+    <ul>
+        <li>@Html.EditorFor(m => m.Name)</li>
+        <li>@Html.EditorFor(m => m.AddressLine1)</li>
+        <li>@Html.EditorFor(m => m.AddressLine2)</li>
+        <li>@Html.EditorFor(m => m.Zipcode)</li>
+        <li>@Html.EditorFor(m => m.City)</li>
+        <li>@Html.EditorFor(m => m.Country)</li>
+    </ul>
+</fieldset>

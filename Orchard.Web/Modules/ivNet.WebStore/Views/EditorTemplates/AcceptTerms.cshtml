@@ -1,0 +1,6 @@
+﻿<div class="checkbox-and-label">
+    <div class="checkbox">@Html.CheckBox("", ViewData.TemplateInfo.FormattedModelValue)</div>
+    <div class="label">
+        <label for="@ViewData.TemplateInfo.GetFullHtmlFieldId("")">@Html.Raw(T("I have read and accept the <a href=\"{0}\" target=\"_blank\">Terms and Conditions</a>", "#").ToString())</label>
+    </div>
+</div>

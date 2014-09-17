@@ -1,0 +1,30 @@
+﻿@model IList<ivNet.Webstore.Models.AddressPart>
+@{
+    Layout.Title = T("Addresses");
+}
+
+<table class="items" summary="@T("This is a table of the addresses of the current customer in your application")">
+    <colgroup>
+        <col id="Col1" />
+        <col id="Col2" />
+        <col id="Col3" />
+    </colgroup>
+    <thead>
+        <tr>
+            <th scope="col">&nbsp;&darr;</th>
+            <th scope="col">@T("Type")</th>
+            <th scope="col">@T("Actions")</th>
+        </tr>
+    </thead>
+    @foreach (var address in Model) {
+    <tr>
+        <td>@address.Id</td>
+        <td>@address.Type</td>
+        <td>
+            <div>
+                <a href="@Url.Action("Edit", "AddressAdmin", new {address.Id})" title="@T("Edit")">@T("Edit")</a>
+            </div>
+        </td>
+    </tr>
+    } 
+</table>

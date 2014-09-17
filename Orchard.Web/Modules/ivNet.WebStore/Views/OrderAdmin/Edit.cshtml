@@ -1,0 +1,62 @@
+﻿@using ivNet.Webstore.Models
+@using ivNet.Webstore.ViewModels
+@{
+    var editModel = (EditOrderVM) Model.EditModel;
+    var order = (OrderRecord) Model.Order;
+    var details = (IList<dynamic>) Model.Details;
+    var quantity = 0;
+    
+    Layout.Title = "Edit Order";
+}
+
+@using (Html.BeginFormAntiForgeryPost()) {
+    @Html.Hidden("Id", editModel.Id)
+    <fieldset>
+        <div class="editor-label">@Html.Label("Status")</div>
+        <div class="editor-field">
+            <select name="Status">
+                @Html.SelectOption(order.Status, OrderStatus.New, "New")
+                @Html.SelectOption(order.Status, OrderStatus.Paid, "Paid")
+                @Html.SelectOption(order.Status, OrderStatus.Completed, "Completed")
+                @Html.SelectOption(order.Status, OrderStatus.Cancelled, "Cancelled")
+            </select>
+        </div>
+    </fieldset>
+    <button type="submit">Save</button>
+}
+
+<br/><br/>
+<fieldset>
+    <legend>Order Details</legend>
+    <table class="items" summary="@T("This is a table of the order details of the current order")">
+        <colgroup>
+            <col id="Col1" />
+            <col id="Col2" />
+            <col id="Col3" />
+            <col id="Col4" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th scope="col">@T("Sku")</th>
+                <th scope="col">@T("Price")</th>
+                <th scope="col">@T("Quantity")</th>
+                <th scope="col">@T("Total")</th>
+            </tr>
+        </thead>
+        @foreach (var detail in details) {
+            quantity += detail.Quantity;
+        <tr>
+            <td>@detail.Sku</td>
+            <td>@detail.Price.ToString("c")</td>
+            <td>@detail.Quantity</td>
+            <td>@detail.Total.ToString("c")</td>
+        </tr>
+        } 
+        <tfoot>
+            <td><strong>Totals</strong></td>
+            <td></td>
+            <td><strong>@quantity</strong></td>
+            <td><strong>@order.Total.ToString("c")</strong></td>
+        </tfoot>
+    </table>
+</fieldset>
