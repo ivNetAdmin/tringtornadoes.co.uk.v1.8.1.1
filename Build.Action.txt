@@ -33,5 +33,4 @@
 27. Create Query
 28. Create "Shop" Projection
 29. Add Shopping Cart Widget
-30. Save Database (Orchard.sdf) - Good place to test cxreating accounts and orders, etc
 
