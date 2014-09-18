@@ -7,7 +7,7 @@ OrchardVersion: 1.8.1.1
 Description: Webstore, Shopping Cart and Checkout functions
 Category: ivNet
 Features:   
-	ivNet.Store.SimulatedPSP
+	ivNet.Webstore.SimulatedPSP
 		Name: Simulated Payment Service Provider
 		Description: Provides a simulated Payment Service Provider for testing purposes only.
 		Category: ivNet
