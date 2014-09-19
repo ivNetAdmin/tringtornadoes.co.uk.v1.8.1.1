@@ -5,7 +5,7 @@
     var totalAmount = (decimal) Model.TotalAmount;
 
 }
-<article>
+<article class="box effect7">
     <span class="label">Items:</span> <span class="value" data-bind="text: itemCount()">@itemCount</span>
     <span class="label">Amount:</span> <span class="value" data-bind="text: Globalize.format(calculateTotal(), 'c')">@totalAmount.ToString("c")</span>
     <span>

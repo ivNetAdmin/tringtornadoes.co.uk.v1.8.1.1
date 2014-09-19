@@ -8,8 +8,6 @@
 
 article.widget-shopping-cart-widget article {
     padding: 5px;
-    border: 1px dotted #ccc;
-    border-top: none;
     line-height: 20px;
 }
 
