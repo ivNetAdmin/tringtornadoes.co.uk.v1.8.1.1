@@ -132,6 +132,8 @@
     <Content Include="App_Data\Sites\Default\Orchard.sdf" />
     <Content Include="App_Data\Sites\Default\Settings.txt" />
     <Content Include="Global.asax" />
+    <Content Include="Media\Default\General\FBTLogoLarge.png" />
+    <Content Include="Media\Default\General\NetballCoachesWithChairman.jpg" />
     <Content Include="Media\Default\WebStore\Gloves\gloves-120x120.jpg" />
     <Content Include="Media\Default\WebStore\Gloves\gloves-150x150.jpg" />
     <Content Include="Media\Default\WebStore\Gloves\gloves-250x250.jpg" />
@@ -200,6 +202,12 @@
     <Content Include="Media\Default\RecipeJournal\f6edac2d37b043edbe73adbd3c132c05" />
     <Content Include="Media\Default\RecipeJournal\web.config" />
     <Content Include="Media\web.config" />
+    <Content Include="Media\Default\Docs\Conduct\Club_Complaints_Procedure.pdf" />
+    <Content Include="Media\Default\Docs\Conduct\player_recruitment.pdf" />
+    <Content Include="Media\Default\Docs\Conduct\RespectCodes_CoachesMngOfficials.pdf" />
+    <Content Include="Media\Default\Docs\Conduct\RespectCodes_MatchOfficials.pdf" />
+    <Content Include="Media\Default\Docs\Conduct\RespectCodes_SpectatorsPntsCrs.pdf" />
+    <Content Include="Media\Default\Docs\Conduct\RespectCodes_YoungPlayers.pdf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

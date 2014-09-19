@@ -564,6 +564,9 @@
     <Content Include="PJS.Bootstrap\Views\Styler.cshtml" />
     <Content Include="PJS.Bootstrap\Web.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="PJS.Bootstrap\Styles\bootstrap-3.2.0\less\social.less" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
