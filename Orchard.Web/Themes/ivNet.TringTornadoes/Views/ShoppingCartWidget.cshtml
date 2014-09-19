@@ -1,0 +1,14 @@
+﻿@{
+    Style.Require("Webstore.ShoppingCart.Widget");
+    
+    var itemCount = (int) Model.ItemCount;
+    var totalAmount = (decimal) Model.TotalAmount;
+
+}
+<article>
+    <span class="label">Items:</span> <span class="value" data-bind="text: itemCount()">@itemCount</span>
+    <span class="label">Amount:</span> <span class="value" data-bind="text: Globalize.format(calculateTotal(), 'c')">@totalAmount.ToString("c")</span>
+    <span>
+        <a href="@Url.Action("Index", "ShoppingCart", new { area = "ivNet.Webstore" })">Cart</a>
+    </span>
+</article>

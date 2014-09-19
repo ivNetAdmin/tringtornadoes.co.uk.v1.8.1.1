@@ -1,0 +1,8 @@
+﻿article.widget-ShoppingCart {
+  margin-top: -40px;
+  float: right;
+}
+article.widget-ShoppingCart article span.label {
+  width: inherit;
+}
+/*# sourceMappingURL=Theme.css.map */
