@@ -144,6 +144,12 @@
     <Content Include="PJS.Bootstrap\Scripts\validationEngine\jquery.validationEngine-en.js" />
     <Content Include="PJS.Bootstrap\Scripts\validationEngine\jquery.validationEngine.js" />
     <Content Include="PJS.Bootstrap\Styles\bootstrap-3.2.0\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="PJS.Bootstrap\Styles\bootstrap-3.2.0\less\bootstrap.css">
+      <DependentUpon>bootstrap.less</DependentUpon>
+    </Content>
+    <Content Include="PJS.Bootstrap\Styles\bootstrap-3.2.0\less\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
     <Content Include="PJS.Bootstrap\Styles\font-awesome-4.2.0\fonts\fontawesome-webfont.svg" />
     <Content Include="PJS.Bootstrap\Styles\prettyPhoto\prettyPhoto.css" />
     <Content Include="PJS.Bootstrap\Styles\rs-plugin\assets\arrowleft.png" />
@@ -566,6 +572,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PJS.Bootstrap\Styles\bootstrap-3.2.0\less\social.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PJS.Bootstrap\Styles\bootstrap-3.2.0\less\bootstrap.css.map">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
