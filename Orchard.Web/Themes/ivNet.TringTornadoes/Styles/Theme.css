@@ -1,6 +1,7 @@
 ﻿article.widget-ShoppingCart {
   margin-top: -416px;
   float: right;
+    z-index: 1000;
 }
 article.widget-ShoppingCart article span.label {
   width: inherit;

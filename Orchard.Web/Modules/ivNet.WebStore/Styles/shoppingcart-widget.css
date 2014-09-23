@@ -9,6 +9,7 @@
 article.widget-shopping-cart-widget article {
     padding: 5px;
     line-height: 20px;
+    z-index: 100;
 }
 
 article.widget-shopping-cart-widget article span.label{
