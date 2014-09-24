@@ -54,13 +54,13 @@ ul.bullets li a:hover
     color: #434343;
 }
 
-article.form 
+/*article.form 
 {
     padding: 10px;
     background: #f6f6f6;
-}
+}*/
 
-article.form input[type="text"], input[type="password"], input[type="email"], input[type="tel"] 
+/*article.form input[type="text"], input[type="password"], input[type="email"], input[type="tel"] 
 {
     width: 250px;
 }
@@ -143,4 +143,4 @@ article.form footer.commands ul:after {
 article.form footer.commands ul button
 {
     margin: 0;
-}
+}*/

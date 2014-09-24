@@ -19,8 +19,8 @@ namespace dsc.CalendarWidget
             manifest.DefineScript("CalendarWidget").SetUrl("CalendarWidget.min.js", "CalendarWidget.js").SetDependencies("FullCalendar","Event");
 
             manifest.DefineStyle("FullCalendar").SetUrl("ext/fullcalendar/FullCalendar.min.css", "ext/fullcalendar/FullCalendar.css");
-            manifest.DefineStyle("FullCalendarPrint").SetUrl("ext/fullcalendar/FullCalendarPrint.min.css", "ext/fullcalendar/FullCalendarPrint.css");
-            manifest.DefineStyle("CalendarWidget").SetUrl("CalendarWidget.min.css", "CalendarWidget.css").SetDependencies("FullCalendar", "FullCalendarPrint");
+            manifest.DefineStyle("FullCalendarPrint").SetUrl("ext/fullcalendar/FullCalendar.print.min.css", "ext/fullcalendar/FullCalendar.print.css");
+            manifest.DefineStyle("CalendarWidget").SetUrl("CalendarWidget.min.css", "CalendarWidget.css").SetDependencies("FullCalendar");
         }
     }
 }

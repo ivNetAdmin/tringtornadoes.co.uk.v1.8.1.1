@@ -21,9 +21,9 @@ var dsc;
                 lang: navigator.userLanguage,
                 theme: false,
                 header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
+                    left: 'title',
+                    center: '',
+                    right: 'prev,next today'
                 },
                 editable: false,
                 timezone: 'local',
@@ -34,4 +34,3 @@ var dsc;
     })();
     dsc.CalendarWidget = CalendarWidget;
 })(dsc || (dsc = {}));
-//# sourceMappingURL=CalendarWidget.js.map
