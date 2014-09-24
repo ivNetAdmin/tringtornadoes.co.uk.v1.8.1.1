@@ -1,0 +1,24 @@
+﻿@using dsc.CalendarWidget.Models;
+@using Orchard.ContentManagement;
+
+@{
+    Style.Require("CalendarWidget");
+
+    Script.Require("CalendarWidget");
+    Script.Require("LangAll");
+
+    Guid guid = Guid.NewGuid();
+
+    string calendarId = String.Format("calendar-{0}", guid);
+}
+
+<section id="@calendarId"></section>
+
+@using (Script.Foot())
+{
+    string serializedCalendarEvents = LowercaseJsonSerializer.SerializeObject(Model.CalendarEvents);
+    
+    <script>
+        dsc.CalendarWidget('@calendarId', @Html.Raw(serializedCalendarEvents));
+    </script>
+}
