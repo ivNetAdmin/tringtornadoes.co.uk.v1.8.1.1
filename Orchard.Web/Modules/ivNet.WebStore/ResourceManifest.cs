@@ -19,7 +19,8 @@ namespace ivNet.Webstore {
             manifest.DefineScript("Globalize").SetUrl("globalize.js").SetDependencies("jQuery");
             manifest.DefineScript("Globalize.Cultures").SetBasePath(manifest.BasePath + "scripts/cultures/").SetUrl("globalize.culture.js").SetCultures("en-US", "nl-NL").SetDependencies("Globalize", "jQuery");
             manifest.DefineScript("Globalize.SetCulture").SetUrl("~/ivNet.Webstore/Resource/SetCultureScript").SetDependencies("Globalize.Cultures");
-            manifest.DefineScript("Webstore.ShoppingCart").SetUrl("shoppingcart.js").SetDependencies("jQuery", "KnockoutJS", "LinqJS", "Globalize.SetCulture");
+            //manifest.DefineScript("Webstore.ShoppingCart").SetUrl("shoppingcart.js").SetDependencies("jQuery", "KnockoutJS", "LinqJS", "Globalize.SetCulture");
+            manifest.DefineScript("Webstore.ShoppingCart").SetUrl("shoppingcart.js").SetDependencies("jQuery");
         }
     }
 }

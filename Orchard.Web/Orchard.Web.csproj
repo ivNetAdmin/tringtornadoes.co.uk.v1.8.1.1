@@ -132,6 +132,7 @@
     <Content Include="App_Data\Sites\Default\Orchard.sdf" />
     <Content Include="App_Data\Sites\Default\Settings.txt" />
     <Content Include="Global.asax" />
+    <Content Include="Media\Default\General\1014_FA_CREST_CSC_4C_small.jpg" />
     <Content Include="Media\Default\General\FBTLogoLarge.png" />
     <Content Include="Media\Default\General\NetballCoachesWithChairman.jpg" />
     <Content Include="Media\Default\WebStore\Gloves\gloves-120x120.jpg" />

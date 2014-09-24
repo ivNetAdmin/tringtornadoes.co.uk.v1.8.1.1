@@ -423,6 +423,7 @@
     <Content Include="Scripts\cultures\globalize.culture.zu-ZA.js" />
     <Content Include="Scripts\cultures\globalize.culture.zu.js" />
     <Content Include="Scripts\cultures\globalize.cultures.js" />
+    <Content Include="Scripts\cultures\globalize.culture.js" />
     <Content Include="Scripts\globalize.js" />
     <Content Include="Scripts\jquery.linq.min.js" />
     <Content Include="Scripts\knockout-2.0.0.js" />

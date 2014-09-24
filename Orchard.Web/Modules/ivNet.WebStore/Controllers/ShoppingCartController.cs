@@ -57,9 +57,10 @@ namespace ivNet.Webstore.Controllers {
                 case "Checkout":
                     return RedirectToAction("SignupOrLogin", "Checkout");
                 case "ContinueShopping":
-                    break;
-                case "Update":
-                    break;
+                    return Redirect("/shop");
+                //case "Update":
+                //    break;
+                    //return RedirectToAction("Index", "ShoppingCart", new { area = "ivNet.WebStore" });
             }
 
             return RedirectToAction("Index");
