@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Orchard.Autoroute.Models;
 using Orchard.ContentManagement;
+using Orchard.Core.Title.Models;
 using Orchard.DisplayManagement;
 using Orchard.Mvc;
 using Orchard.Themes;
@@ -71,11 +72,11 @@ namespace ivNet.Webstore.Controllers {
             var json = new
             {
                 items = (from item in products
-                         let routePart = item.Item1.As<AutoroutePart>()
+                         let titlePart = item.Item1.As<TitlePart>()
                          select new
                          {
                              id        = item.Item1.Id,
-                           //  title     = routePart != null ? routePart.Title : "(No RoutePart attached)",
+                             title = titlePart != null ? titlePart.Title : "(No TitlePart attached)",
                              unitPrice = item.Item1.Price,
                              quantity  = item.Item2
                          }).ToArray()

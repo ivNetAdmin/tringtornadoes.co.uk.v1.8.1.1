@@ -1,6 +1,7 @@
 ﻿@using Orchard.Autoroute.Models
 @using Orchard.ContentManagement
 @using ivNet.Webstore.Models
+@using Orchard.Core.Title.Models
 @{
     Style.Require("Webstore.Checkout.Summary");
     var shoppingCart = Model.ShoppingCart;
@@ -35,9 +36,8 @@ else {
                     var item = items[i];
                     var product = (ProductPart) item.Product;
                     var contentItem = (ContentItem) item.ContentItem;
-                    var routePart = contentItem.As<AutoroutePart>();
-                   // var title = routePart != null ? routePart.Title : "(no routepart attached)";
-                    var title = "(no routepart attached)";
+                    var titlePart = contentItem.As<TitlePart>();
+                    var title = titlePart != null ? titlePart.Title : "(no titlePart attached)";                  
                     var quantity = (int) item.Quantity;
                     var unitPrice = product.Price;
                     var totalPrice = quantity*unitPrice;

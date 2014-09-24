@@ -2,6 +2,7 @@
 @using Orchard.Autoroute.Models
 @using Orchard.ContentManagement
 @using ivNet.Webstore.Models
+@using Orchard.Core.Title.Models
 @{
     Style.Require("Webstore.Order");
 
@@ -43,9 +44,8 @@
             <tbody>
                 @foreach (var detail in order.Details) {
                     var productPart = productParts.Single(x => x.Id == detail.ProductId);
-                    var routePart = productPart.As<AutoroutePart>();
-                    //var productTitle = routePart != null ? routePart.Title : "(No RoutePart attached)";
-                    var productTitle = "(No RoutePart attached)";
+                    var titlePart = productPart.As<TitlePart>();
+                    var productTitle = titlePart != null ? titlePart.Title : "(no titlePart attached)";
                     <tr>
                         <td>@productTitle</td>
                         <td class="numeric">@detail.UnitPrice.ToString("c")</td>

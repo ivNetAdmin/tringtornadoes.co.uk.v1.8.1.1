@@ -1,6 +1,7 @@
 ﻿@using Orchard.Autoroute.Models
 @using Orchard.ContentManagement
 @using ivNet.Webstore.Models
+@using Orchard.Core.Title.Models
 @{
     Style.Require("Webstore.ShoppingCart");
     Script.Require("Webstore.ShoppingCart");
@@ -16,7 +17,7 @@
 }
 else { 
     <div data-bind="visible: !hasItems()">
-        <p>You don't have any items in your shopping cart.</p>
+        <p>You don't have @items.Count item(s) in your shopping cart.</p>
         <a class="button" href="#">Continue shopping</a>
     </div>
     
@@ -27,10 +28,10 @@ else {
                 <table>
                     <thead>
                         <tr>
-                            <td>Article</td>
-                            <td class="numeric">Unit Price</td>
+                            <td>Item</td>
+                            <td class="numeric">Price</td>
                             <td class="numeric">Quantity</td>
-                            <td class="numeric">Total Price</td>
+                            <td class="numeric">Total</td>
                             <td class="action"></td>
                         </tr>
                     </thead>
@@ -39,9 +40,8 @@ else {
                             var item = items[i];
                             var product = (ProductPart) item.Product;
                             var contentItem = (ContentItem) item.ContentItem;
-                            var routePart = contentItem.As<AutoroutePart>();
-                            //var title = routePart != null ? routePart.Title : "(no routepart attached)";
-                            var title = "(no routepart attached)";
+                            var titlePart = contentItem.As<TitlePart>();
+                            var title = titlePart != null ? titlePart.Title : "(no titlePart attached)";
                             var quantity = (int) item.Quantity;
                             var unitPrice = product.Price;
                             var totalPrice = quantity*unitPrice;
@@ -70,7 +70,7 @@ else {
                             <td></td>
                         </tr>
                         <tr>
-                            <td class="numeric label" colspan="3">VAT (19%):</td>
+                            <td class="numeric label" colspan="3">VAT (20%):</td>
                             <td class="numeric"><span data-bind="text: Globalize.format(calculateVat(), 'c')">@vat.ToString("c")</span></td>
                             <td></td>
                         </tr>

@@ -6,7 +6,10 @@
     <Place Fields_Numeric="-"/>
     <Place Fields_Boolean="-"/>
     <Place Fields_Enumeration="-"/>
-    <Place Parts_Common_Metadata="-"/>
-    <Place Parts_Common_Metadata_Summary="-"/>
+   
   </Match>
+
+ <Place Parts_Common_Metadata="-"/>
+    <Place Parts_Common_Metadata_Summary="-"/>
+
 </Placement>

@@ -5,8 +5,15 @@
     }
 
     Model.Classes.Add("content-item");
-    Model.Classes.Add("col-md-2");
-    
+    if (Request.RawUrl == "/shop")
+    {
+        Model.Classes.Add("col-md-2");
+    }
+    else
+    {
+        Model.Classes.Add("shop-item-detail");
+    }
+
     var contentTypeClassName = ((string)Model.ContentItem.ContentType).HtmlClassify();
     Model.Classes.Add(contentTypeClassName);
     
@@ -24,7 +31,11 @@
         }
     </header>
     @Display(Model.Content)
-<a href="/Contents/Item/Display/@productId" title="Click for moew detail...">More...</a>
+<div class="shop-navigation-buttons">
+    <a class="more-button" href="/Contents/Item/Display/@productId" title="Click for more detail...">More...</a>
+    <a class="back-button" href="/shop" title="Click for shop...">Back to Shop...</a>
+</div>
+
     @if(Model.Footer != null) {
         <footer>
             @Display(Model.Footer)

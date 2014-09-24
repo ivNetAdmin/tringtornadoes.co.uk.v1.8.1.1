@@ -65,7 +65,7 @@
     }, shoppingCart);
 
     shoppingCart.hasItems = ko.dependentObservable(function () { return this.items().length > 0; }, shoppingCart);
-    shoppingCart.calculateVat = function () { return this.calculateSubtotal() * 0.19; };
+    shoppingCart.calculateVat = function () { return this.calculateSubtotal() * 0.20; };
     shoppingCart.calculateTotal = function () { return this.calculateSubtotal() + this.calculateVat(); };
 
     /*****************************************************
