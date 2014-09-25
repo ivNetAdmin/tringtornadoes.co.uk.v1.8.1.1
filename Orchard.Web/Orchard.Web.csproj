@@ -135,6 +135,8 @@
     <Content Include="Media\Default\BannerCollage\Banner1.png" />
     <Content Include="Media\Default\BannerCollage\Banner2.png" />
     <Content Include="Media\Default\BannerCollage\Banner3.png" />
+    <Content Include="Media\Default\BannerCollage\Banner4.png" />
+    <Content Include="Media\Default\BannerCollage\Banner5.png" />
     <Content Include="Media\Default\General\1014_FA_CREST_CSC_4C_small.jpg" />
     <Content Include="Media\Default\General\FBTLogoLarge.png" />
     <Content Include="Media\Default\General\NetballCoachesWithChairman.jpg" />
