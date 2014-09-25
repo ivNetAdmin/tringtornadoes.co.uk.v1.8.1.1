@@ -5,15 +5,16 @@
 <h2>Address Details</h2>
 <p>@T("Please provide us with your billing address and shipping address. If both addresses are the same, then you only need to provide us with your invoice address.")</p>
 
-@using (Html.BeginFormAntiForgeryPost(Url.Action("SelectAddress", "Checkout", new { area = "ivNet.Webstore" }))) {
-    <article class="form">
-    
-        @Html.EditorFor(m => addresses.InvoiceAddress)
-        @Html.EditorFor(m => addresses.ShippingAddress)
-    
-        <footer class="commands">
+@using (Html.BeginFormAntiForgeryPost(Url.Action("SelectAddress", "Checkout", new { area = "ivNet.Webstore" })))
+{
+    <article class="form invoice-shipping-address container">
+
+        <div class="col-md-6">@Html.EditorFor(m => addresses.InvoiceAddress)</div>
+        <div class="col-md-6"> @Html.EditorFor(m => addresses.ShippingAddress)</div>
+
+        <footer class="commands col-md-12">
             <ul>
-                <li class="align left"><a href="#">@T("Cancel")</a></li>
+                <li class="align left"><a href="@Url.Action("Index", "ShoppingCart", new { area = "ivNet.Webstore" })">@T("Cancel")</a></li>
                 <li class="align right"><button type="submit">@T("Next")</button></li>
             </ul>
         </footer>

@@ -13,14 +13,17 @@
     {
 
         <article class="form">
-
-            <fieldset>
-                <ul>
-                    <li>@Html.EditorFor(m => login.Email)</li>
-                    <li>@Html.EditorFor(m => login.Password)</li>
-                </ul>
-            </fieldset>
-
+            <table>
+                <tbody>
+                    <tr>
+                        <td>@Html.EditorFor(m => login.Email)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.EditorFor(m => login.Password)</td>
+                    </tr>
+                </tbody>
+            </table>
+           
             <fieldset>
                 <ul>
                     <li>@Html.EditorFor(m => login.CreatePersistentCookie)</li>
@@ -29,7 +32,7 @@
 
             <footer class="commands">
                 <ul>
-                    <li class="align left"><a href="@Url.Action("SignupOrLogin", "Checkout", new { area = "ivNet.Webstore" })">Cancel</a></li>
+                    <li class="align left"><a href="@Url.Action("Index", "ShoppingCart", new { area = "ivNet.Webstore" })">@T("Cancel")</a></li>
                     <li class="align right"><button type="submit">@T("Next")</button></li>
                 </ul>
             </footer>

@@ -25,10 +25,10 @@ else {
         <table>
             <thead>
                 <tr>
-                    <td>Article</td>
-                    <td class="numeric">Unit Price</td>
+                    <td>Item</td>
+                    <td class="numeric">Price</td>
                     <td class="numeric">Quantity</td>
-                    <td class="numeric">Total Price</td>
+                    <td class="numeric">Total</td>
                 </tr>
             </thead>
             <tbody>
@@ -98,7 +98,7 @@ else {
     
     <article>
         <div class="group">
-            <div class="align left"><a href="#">Cancel</a></div>
+            <div class="align left"><a href="#">@T("Cancel")</a></div>
             <div class="align right">
                 @using (Html.BeginFormAntiForgeryPost(Url.Action("Create", "Order", new { area = "ivNet.Webstore" }))) {
                     <button type="submit">Place Order</button>
