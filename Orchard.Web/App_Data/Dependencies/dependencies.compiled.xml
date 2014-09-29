@@ -8,9 +8,9 @@
   </Dependency>
   <Dependency>
     <ExtensionId>ivNet.TringTornadoes</ExtensionId>
-    <LoaderName>DynamicExtensionLoader</LoaderName>
-    <VirtualPath>~/Themes/ivNet.TringTornadoes/ivNet.TringTornadoes.csproj</VirtualPath>
-    <Hash>2388b9ca557b3828</Hash>
+    <LoaderName>PrecompiledExtensionLoader</LoaderName>
+    <VirtualPath>~/Themes/ivNet.TringTornadoes/bin/ivNet.TringTornadoes.dll</VirtualPath>
+    <Hash>4913e21ee1da17df</Hash>
   </Dependency>
   <Dependency>
     <ExtensionId>ivNet.WebStore</ExtensionId>

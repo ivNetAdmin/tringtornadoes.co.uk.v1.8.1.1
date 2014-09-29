@@ -140,6 +140,12 @@
     <Content Include="Media\Default\General\1014_FA_CREST_CSC_4C_small.jpg" />
     <Content Include="Media\Default\General\FBTLogoLarge.png" />
     <Content Include="Media\Default\General\NetballCoachesWithChairman.jpg" />
+    <Content Include="Media\Default\Sponsors\camdenHouse.jpg" />
+    <Content Include="Media\Default\Sponsors\FBT.png" />
+    <Content Include="Media\Default\Sponsors\ivnet.jpg" />
+    <Content Include="Media\Default\Sponsors\kidzoutdoors.jpg" />
+    <Content Include="Media\Default\Sponsors\notion.jpg" />
+    <Content Include="Media\Default\Sponsors\vcphotography.jpg" />
     <Content Include="Media\Default\Teams\U10\U10Photo.jpg" />
     <Content Include="Media\Default\Teams\U7\U7Photo.jpg" />
     <Content Include="Media\Default\Teams\U8\U8Photo.jpg" />

@@ -67,6 +67,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\Theme.js" />
     <Content Include="Styles\Theme.css">
       <DependentUpon>Theme.less</DependentUpon>
     </Content>
@@ -104,6 +105,9 @@
     <Content Include="Styles\Theme.css.map">
       <DependentUpon>Theme.css</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ResourceManifest.cs" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

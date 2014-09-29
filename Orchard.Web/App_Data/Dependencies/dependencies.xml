@@ -83,8 +83,8 @@
   </Dependency>
   <Dependency>
     <ModuleName>ivNet.TringTornadoes</ModuleName>
-    <VirtualPath>~/Themes/ivNet.TringTornadoes/ivNet.TringTornadoes.csproj</VirtualPath>
-    <LoaderName>DynamicExtensionLoader</LoaderName>
+    <VirtualPath>~/Themes/ivNet.TringTornadoes/bin/ivNet.TringTornadoes.dll</VirtualPath>
+    <LoaderName>PrecompiledExtensionLoader</LoaderName>
     <References />
   </Dependency>
   <Dependency>
