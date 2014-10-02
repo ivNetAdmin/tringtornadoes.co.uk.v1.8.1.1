@@ -11,3 +11,7 @@ Features:
 		Name: Simulated Payment Service Provider
 		Description: Provides a simulated Payment Service Provider for testing purposes only.
 		Category: ivNet
+	ivNet.Webstore.PayPalPSP
+		Name: PayPal Payment Service Provider
+		Description: Provides a PayPal Payment Service Provider.
+		Category: ivNet

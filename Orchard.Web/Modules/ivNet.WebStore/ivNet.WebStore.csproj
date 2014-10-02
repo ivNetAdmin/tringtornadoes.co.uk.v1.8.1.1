@@ -458,6 +458,7 @@
     <Compile Include="Controllers\CustomerAdminController.cs" />
     <Compile Include="Controllers\OrderAdminController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\PayPalPaymentServiceProviderController.cs" />
     <Compile Include="Controllers\ResourceController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\SimulatedPaymentServiceProviderController.cs" />
@@ -493,6 +494,7 @@
     <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Services\IShoppingCart.cs" />
     <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\PayPalPaymentServiceProvider.cs" />
     <Compile Include="Services\ShoppingCart.cs" />
     <Compile Include="Services\SimulatedPaymentServiceProvider.cs" />
     <Compile Include="ViewModels\AddressesVM.cs" />
@@ -558,6 +560,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\PayPalPaymentServiceProvider\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

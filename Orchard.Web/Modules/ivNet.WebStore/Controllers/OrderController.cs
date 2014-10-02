@@ -57,6 +57,14 @@ namespace ivNet.Webstore.Controllers {
 
             // Fire the PaymentRequest event
             var paymentRequest = new PaymentRequest(order);
+            var products = _shoppingCart.GetProducts();
+
+            foreach (var productPart in products)
+            {
+                var cakes = productPart;
+            }
+
+            //paymentRequest.OrderDescription = _orderService.GetProducts(order.Details).ToArray();
 
             foreach (var handler in _paymentServiceProviders) {
                 handler.RequestPayment(paymentRequest);
