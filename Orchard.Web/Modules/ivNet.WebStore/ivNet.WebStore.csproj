@@ -437,6 +437,36 @@
     <Content Include="Styles\shoppingcart.css" />
     <Content Include="Styles\simulated-psp.css" />
     <Content Include="Styles\Web.config" />
+    <Content Include="Views\AddressAdmin\Edit.cshtml" />
+    <Content Include="Views\Checkout.Login.cshtml" />
+    <Content Include="Views\Checkout.SelectAddress.cshtml" />
+    <Content Include="Views\Checkout.Signup.cshtml" />
+    <Content Include="Views\Checkout.Summary.cshtml" />
+    <Content Include="Views\CustomerAdmin\Edit.cshtml" />
+    <Content Include="Views\CustomerAdmin\Index.cshtml" />
+    <Content Include="Views\CustomerAdmin\ListAddresses.cshtml" />
+    <Content Include="Views\CustomerAdmin\ListOrders.cshtml" />
+    <Content Include="Views\EditorTemplates\AcceptTerms.cshtml" />
+    <Content Include="Views\EditorTemplates\Address.cshtml" />
+    <Content Include="Views\EditorTemplates\Checkbox.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\Address.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\Customer.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\Product.cshtml" />
+    <Content Include="Views\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Order.Created.cshtml" />
+    <Content Include="Views\order.error.cshtml" />
+    <Content Include="Views\Order.PaymentResponse.cshtml" />
+    <Content Include="Views\order.thankyou.cshtml" />
+    <Content Include="Views\OrderAdmin\Edit.cshtml" />
+    <Content Include="Views\OrderAdmin\Index.cshtml" />
+    <Content Include="Views\Parts.Product.AddButton.cshtml" />
+    <Content Include="Views\Parts.Product.cshtml" />
+    <Content Include="Views\Parts.Product.SummaryAdmin.cshtml" />
+    <Content Include="Views\PayPalPaymentServiceProvider\Index.cshtml" />
+    <Content Include="Views\ShoppingCart.cshtml" />
+    <Content Include="Views\ShoppingCartWidget.cshtml" />
+    <Content Include="Views\SignupOrLogin.cshtml" />
+    <Content Include="Views\SimulatedPaymentServiceProvider\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Properties\AssemblyInfo.cs" />
     <Content Include="Module.txt" />
@@ -482,6 +512,8 @@
     <Compile Include="Models\OrderDetailRecord.cs" />
     <Compile Include="Models\OrderRecord.cs" />
     <Compile Include="Models\OrderStatus.cs" />
+    <Compile Include="Models\PayPalListenerModel.cs" />
+    <Compile Include="Models\PayPalPaymentInfo.cs" />
     <Compile Include="Models\ProductPart.cs" />
     <Compile Include="Models\ProductRecord.cs" />
     <Compile Include="Models\ShoppingCartItem.cs" />
@@ -513,35 +545,6 @@
     <Content Include="Scripts\globalize.setculture.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\AddressAdmin\Edit.cshtml" />
-    <Content Include="Views\Checkout.Login.cshtml" />
-    <Content Include="Views\Checkout.SelectAddress.cshtml" />
-    <Content Include="Views\Checkout.Signup.cshtml" />
-    <Content Include="Views\Checkout.Summary.cshtml" />
-    <Content Include="Views\CustomerAdmin\Edit.cshtml" />
-    <Content Include="Views\CustomerAdmin\Index.cshtml" />
-    <Content Include="Views\CustomerAdmin\ListAddresses.cshtml" />
-    <Content Include="Views\CustomerAdmin\ListOrders.cshtml" />
-    <Content Include="Views\EditorTemplates\AcceptTerms.cshtml" />
-    <Content Include="Views\EditorTemplates\Address.cshtml" />
-    <Content Include="Views\EditorTemplates\Checkbox.cshtml" />
-    <Content Include="Views\EditorTemplates\Parts\Address.cshtml" />
-    <Content Include="Views\EditorTemplates\Parts\Customer.cshtml" />
-    <Content Include="Views\EditorTemplates\Parts\Product.cshtml" />
-    <Content Include="Views\EditorTemplates\Password.cshtml" />
-    <Content Include="Views\Order.Created.cshtml" />
-    <Content Include="Views\Order.PaymentResponse.cshtml" />
-    <Content Include="Views\OrderAdmin\Edit.cshtml" />
-    <Content Include="Views\OrderAdmin\Index.cshtml" />
-    <Content Include="Views\Parts.Product.AddButton.cshtml" />
-    <Content Include="Views\Parts.Product.cshtml" />
-    <Content Include="Views\Parts.Product.SummaryAdmin.cshtml" />
-    <Content Include="Views\ShoppingCart.cshtml" />
-    <Content Include="Views\ShoppingCartWidget.cshtml" />
-    <Content Include="Views\SignupOrLogin.cshtml" />
-    <Content Include="Views\SimulatedPaymentServiceProvider\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Placement.info" />
   </ItemGroup>
   <ItemGroup>
@@ -560,10 +563,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="Views\PayPalPaymentServiceProvider\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

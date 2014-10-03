@@ -565,7 +565,6 @@
     <Content Include="PJS.Bootstrap\Views\Parts.TwitterWidget.cshtml" />
     <Content Include="PJS.Bootstrap\Views\Parts.ZenGallery.cshtml" />
     <Content Include="PJS.Bootstrap\Views\Register.cshtml" />
-    <Content Include="PJS.Bootstrap\Views\Resources.cshtml" />
     <Content Include="PJS.Bootstrap\Views\Slider.cshtml" />
     <Content Include="PJS.Bootstrap\Views\Styler.cshtml" />
     <Content Include="PJS.Bootstrap\Web.config" />
@@ -577,6 +576,9 @@
     <Content Include="PJS.Bootstrap\Styles\bootstrap-3.2.0\less\bootstrap.css.map">
       <DependentUpon>bootstrap.css</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PJS.Bootstrap\Views\Resources.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

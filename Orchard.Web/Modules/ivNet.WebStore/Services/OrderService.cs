@@ -109,7 +109,43 @@ namespace ivNet.Webstore.Services {
                     order.CancelledAt = _dateTimeService.Now;
                     break;
             }
+
+            _orderRepository.Update(order);
         }
+
+        public void UpdateOrderStatus(OrderRecord order, string paymentResponse)
+        {           
+            OrderStatus orderStatus;
+
+            //switch (paymentResponse.Status) {
+            //    case PaymentResponseStatus.Success:
+                    orderStatus = OrderStatus.Paid;
+            //        break;
+            //    default:
+            //        orderStatus = OrderStatus.Cancelled;
+             //       break;
+            //}
+            
+           // if (order.Status == orderStatus)
+           //     return;
+
+            order.Status = orderStatus;
+           // order.PaymentServiceProviderResponse = paymentResponse.ResponseText;
+           // order.PaymentReference = paymentResponse.PaymentReference;
+
+            switch(order.Status) {
+                case OrderStatus.Paid:
+                    order.PaidAt = _dateTimeService.Now;
+                    break;
+                case OrderStatus.Completed:
+                    order.CompletedAt = _dateTimeService.Now;
+                    break;
+                case OrderStatus.Cancelled:
+                    order.CancelledAt = _dateTimeService.Now;
+                    break;
+            }
+        }
+        
 
         public IEnumerable<OrderRecord> GetOrders(int customerId) {
             return _orderRepository.Fetch(x => x.CustomerId == customerId);

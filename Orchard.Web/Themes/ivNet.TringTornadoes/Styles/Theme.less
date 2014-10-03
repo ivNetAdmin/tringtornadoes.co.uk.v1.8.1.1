@@ -1,4 +1,22 @@
-﻿article.widget-ShoppingCart
+﻿body { 
+background: url('/Media/Default/Theme/bg.png') no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+div#layout-featured {
+    margin-top: 50px!important;
+}
+
+div#layout-main, div#layout-tripel {
+    background-color: #fff;
+    opacity: .90;
+ -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+    border: 10px solid #fff;
+
+}
+article.widget-ShoppingCart
 {
     margin-top: -388px;
     margin-right:10px;
@@ -244,15 +262,25 @@ article.shop-item-detail
 
 div.sponsor-images
 {
-     min-height: 160px;
+     height: 160px;
     img
        {
-        width: 200px;
-        margin: auto 0;
+        max-width: 200px;
+        max-height: 160px;
+        margin: auto;
 
     }
 img.sponsor-image
 {
     display: none;
 }
+}
+
+div.fc-toolbar {
+
+}
+
+div.fc-toolbar h2 {
+    margin-top: 4px !important;
+    font-size: 18px;    
 }

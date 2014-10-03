@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
+using ivNet.WebStore.Models;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.DisplayManagement;
@@ -110,6 +112,52 @@ namespace ivNet.Webstore.Controllers {
             }
 
             return new ShapeResult(this, _shapeFactory.Order_PaymentResponse(Order: order, PaymentResponse: args));
+        }
+
+        [HttpPost]
+        public HttpStatusCodeResult IPN(FormCollection result)
+        {
+            try
+            {
+                var payPalPaymentInfo = new PayPalPaymentInfo();
+
+                TryUpdateModel(payPalPaymentInfo, result.ToValueProvider());
+
+                var model = new PayPalListenerModel();
+                model.PayPalPaymentInfo = payPalPaymentInfo;
+
+                var parameters = Request.BinaryRead(Request.ContentLength);
+
+                if (parameters != null)
+                {
+                //    model.GetStatus(parameters);
+                }
+
+
+                var order = _orderService.GetOrderByNumber(1013.ToString(CultureInfo.InvariantCulture));
+                _orderService.UpdateOrderStatus(order,"Paid");;
+
+                return new HttpStatusCodeResult(200, "Success");
+            }
+            catch (Exception)
+            {
+                return new HttpStatusCodeResult(500, "Error");
+            }
+        }
+
+
+        [HttpPost]
+        [Themed]
+        public ActionResult ThankYou()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Themed]
+        public ActionResult Error()
+        {
+            return View();
         }
     }
 }

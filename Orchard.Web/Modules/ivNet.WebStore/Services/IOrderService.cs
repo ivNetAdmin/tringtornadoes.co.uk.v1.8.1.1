@@ -16,10 +16,11 @@ namespace ivNet.Webstore.Services {
         /// </summary>
         IEnumerable<ProductPart> GetProducts(IEnumerable<OrderDetailRecord> orderDetails);
 
-        OrderRecord GetOrderByNumber(string orderNumber);
-        void UpdateOrderStatus(OrderRecord order, PaymentResponse paymentResponse);
+        OrderRecord GetOrderByNumber(string orderNumber);        
         IEnumerable<OrderRecord> GetOrders(int customerId);
         IQueryable<OrderRecord> GetOrders();
         OrderRecord GetOrder(int id);
+        void UpdateOrderStatus(OrderRecord order, PaymentResponse paymentResponse); 
+        void UpdateOrderStatus(OrderRecord order, string paymentResponse);
     }
 }
