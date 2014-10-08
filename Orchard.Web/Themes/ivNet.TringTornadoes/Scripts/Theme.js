@@ -1,74 +1,92 @@
-﻿function startSlideshow() {  
-    $("img.sponsor1").fadeIn(1000).delay(1050).fadeOut(10500); //13000
-    $("img.sponsor2").delay(13000).fadeIn(1500).delay(11000).fadeOut(1500); //27000
-    $("img.sponsor3").delay(27000).fadeIn(1500).delay(11000).fadeOut(1500); //41000
-    $("img.sponsor4").delay(41000).fadeIn(1500).delay(11000).fadeOut(1500); //55000
-    $("img.sponsor5").delay(55000).fadeIn(1500).delay(11000).fadeOut(1500); //69000
-    $("img.sponsor6").delay(69000).fadeIn(1500).delay(11000).fadeOut(1500, startSlideshow); //83000
-}
+﻿var ivNet = ivNet || {};
 
-function carouselSlider() {
-    $('#slider1').revolution({
-        dottedOverlay: "none",
-        delay: 9000,
-        startwidth: 1170,
-        startheight: 400,
-        hideThumbs: 200,
+ivNet.UI = ivNet.UI || {};
 
-        thumbWidth: 100,
-        thumbHeight: 50,
-        thumbAmount: 4,
+ivNet.UI.Theme = (function ($) {
+    var my = {};
 
-        navigationType: "both",
-        navigationArrows: "solo",
-        navigationStyle: "round",
+    my.Initialize = function () {
+        my.CarouselSlider();
+        $("div.sponsor-images img").hide();
+        my.StartSlideshow();
+    };
 
-        touchenabled: "on",
-        onHoverStop: "on",
+    my.StartSlideshow = function () {
+        $("img.sponsor1").fadeIn(1000).delay(1050).fadeOut(10500); //13000
+        $("img.sponsor2").delay(13000).fadeIn(1500).delay(11000).fadeOut(1500); //27000
+        $("img.sponsor3").delay(27000).fadeIn(1500).delay(11000).fadeOut(1500); //41000
+        $("img.sponsor4").delay(41000).fadeIn(1500).delay(11000).fadeOut(1500); //55000
+        $("img.sponsor5").delay(55000).fadeIn(1500).delay(11000).fadeOut(1500); //69000
+        $("img.sponsor6").delay(69000).fadeIn(1500).delay(11000).fadeOut(1500, my.StartSlideshow); //83000
+    }
 
-        navigationHAlign: "center",
-        navigationVAlign: "bottom",
-        navigationHOffset: 0,
-        navigationVOffset: 20,
+    my.CarouselSlider = function () {
+        $('#slider1').revolution({
+            dottedOverlay: "none",
+            delay: 9000,
+            startwidth: 1170,
+            startheight: 400,
+            hideThumbs: 200,
 
-        soloArrowLeftHalign: "left",
-        soloArrowLeftValign: "center",
-        soloArrowLeftHOffset: 0,
-        soloArrowLeftVOffset: 0,
+            thumbWidth: 100,
+            thumbHeight: 50,
+            thumbAmount: 4,
 
-        soloArrowRightHalign: "right",
-        soloArrowRightValign: "center",
-        soloArrowRightHOffset: 0,
-        soloArrowRightVOffset: 0,
+            navigationType: "both",
+            navigationArrows: "solo",
+            navigationStyle: "round",
 
-        shadow: 0,
-        fullWidth: "on",
-        fullScreen: "off",
+            touchenabled: "on",
+            onHoverStop: "on",
 
-        stopLoop: "off",
-        stopAfterLoops: -1,
-        stopAtSlide: -1,
+            navigationHAlign: "center",
+            navigationVAlign: "bottom",
+            navigationHOffset: 0,
+            navigationVOffset: 20,
 
-        shuffle: "off",
+            soloArrowLeftHalign: "left",
+            soloArrowLeftValign: "center",
+            soloArrowLeftHOffset: 0,
+            soloArrowLeftVOffset: 0,
 
-        autoHeight: "off",
-        forceFullWidth: "off",
+            soloArrowRightHalign: "right",
+            soloArrowRightValign: "center",
+            soloArrowRightHOffset: 0,
+            soloArrowRightVOffset: 0,
 
-        hideThumbsOnMobile: "off",
-        hideBulletsOnMobile: "off",
-        hideArrowsOnMobile: "off",
-        hideThumbsUnderResolution: 0,
+            shadow: 0,
+            fullWidth: "on",
+            fullScreen: "off",
 
-        hideSliderAtLimit: 0,
-        hideCaptionAtLimit: 0,
-        hideAllCaptionAtLilmit: 0,
-        startWithSlide: 0,
-        fullScreenOffsetContainer: ""
-    });
-}
+            stopLoop: "off",
+            stopAfterLoops: -1,
+            stopAtSlide: -1,
 
-$(document).ready(function () {
-    carouselSlider();
-    $("div.sponsor-images img").hide();
-    startSlideshow();
-});
+            shuffle: "off",
+
+            autoHeight: "off",
+            forceFullWidth: "off",
+
+            hideThumbsOnMobile: "off",
+            hideBulletsOnMobile: "off",
+            hideArrowsOnMobile: "off",
+            hideThumbsUnderResolution: 0,
+
+            hideSliderAtLimit: 0,
+            hideCaptionAtLimit: 0,
+            hideAllCaptionAtLilmit: 0,
+            startWithSlide: 0,
+            fullScreenOffsetContainer: ""
+        });
+    }
+
+    $(document).ready(my.Initialize);
+
+    return my;
+
+})(jQuery);
+
+
+
+
+

@@ -4,10 +4,12 @@ using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using ivNet.WebStore.Models;
+using Newtonsoft.Json;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.DisplayManagement;
 using Orchard.Localization;
+using Orchard.Logging;
 using Orchard.Mvc;
 using Orchard.Security;
 using Orchard.Themes;
@@ -40,7 +42,10 @@ namespace ivNet.Webstore.Controllers {
             _customerService               = customerService;
             _paymentServiceProviders       = paymentServiceProviders;
             _t                             = NullLocalizer.Instance;
+            Logger = NullLogger.Instance;
         }
+
+        public ILogger Logger { get; set; }
 
         [Themed, HttpPost]
         public ActionResult Create() {
@@ -119,6 +124,11 @@ namespace ivNet.Webstore.Controllers {
         {
             try
             {
+                //throw new Exception("hello mum - error");
+                
+                Logger.Debug("hello mum");
+                Logger.Debug(JsonConvert.SerializeObject(result));
+                
                 var payPalPaymentInfo = new PayPalPaymentInfo();
 
                 TryUpdateModel(payPalPaymentInfo, result.ToValueProvider());
@@ -135,25 +145,28 @@ namespace ivNet.Webstore.Controllers {
 
 
                 var order = _orderService.GetOrderByNumber(1013.ToString(CultureInfo.InvariantCulture));
-                _orderService.UpdateOrderStatus(order,"Paid");;
+                _orderService.UpdateOrderStatus(order, "Hello mum");
+
+                order = _orderService.GetOrderByNumber(1006.ToString(CultureInfo.InvariantCulture));
+
+                _orderService.UpdateOrderStatus(order, "paid");
 
                 return new HttpStatusCodeResult(200, "Success");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Error(ex.Message);
                 return new HttpStatusCodeResult(500, "Error");
             }
         }
 
-
-        [HttpPost]
+       
         [Themed]
         public ActionResult ThankYou()
         {
             return View();
         }
 
-        [HttpPost]
         [Themed]
         public ActionResult Error()
         {

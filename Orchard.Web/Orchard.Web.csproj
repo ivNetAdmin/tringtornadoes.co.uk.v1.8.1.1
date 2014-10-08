@@ -129,8 +129,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Sites\Default\Orchard.sdf" />
-    <Content Include="App_Data\Sites\Default\Settings.txt" />
     <Content Include="Global.asax" />
     <Content Include="Media\Default\BannerCollage\Banner1.png" />
     <Content Include="Media\Default\BannerCollage\Banner2.png" />
@@ -142,7 +140,7 @@
     <Content Include="Media\Default\General\NetballCoachesWithChairman.jpg" />
     <Content Include="Media\Default\Sponsors\camdenHouse.jpg" />
     <Content Include="Media\Default\Sponsors\FBT.png" />
-    <Content Include="Media\Default\Sponsors\ivnet.jpg" />
+    <Content Include="Media\Default\Sponsors\ivnet.png" />
     <Content Include="Media\Default\Sponsors\kidzoutdoors.jpg" />
     <Content Include="Media\Default\Sponsors\notion.jpg" />
     <Content Include="Media\Default\Sponsors\vcphotography.jpg" />
@@ -209,8 +207,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\Sites.config" />
-    <Content Include="App_Data\Sites\Default\mappings.bin" />
-    <Content Include="App_Data\Sites\Default\reports.dat" />
     <Content Include="Media\Default\RecipeJournal\44ee5cb08b8647dfbdcf663430961dbe" />
     <Content Include="Media\Default\RecipeJournal\51d81532ff42495f9ad18e6a1b516f76" />
     <Content Include="Media\Default\RecipeJournal\62d292725d8948fe8b7b6e24f577c5e5" />
@@ -277,7 +273,9 @@
       <DependentUpon>HostComponents.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
   </Target>

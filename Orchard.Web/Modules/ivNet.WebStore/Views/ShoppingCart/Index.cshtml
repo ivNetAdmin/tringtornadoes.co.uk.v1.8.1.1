@@ -1,0 +1,77 @@
+﻿@{
+    Style.Require("Webstore.ShoppingCart");
+    Script.Require("Webstore.ShoppingCart");
+}
+
+<div class="shopping-cart-view" data-ng-app="ivNet.ShoppingCart.App">
+    <div class="cart" data-ng-controller="ShoppingCartController">
+        
+        <div ng-show="itemcount < 1">
+            <p>You don't have any items in your shopping cart.</p>
+            <a class="button" href="/shop">Continue shopping</a>
+        </div>
+        
+        <div ng-show="itemcount > 0">
+            <div>
+                <p>You have {{itemcount}} item(s) in your shopping cart.</p>
+            </div>
+            
+            <article class="shoppingcart">
+                @using (Html.BeginFormAntiForgeryPost(Url.Action("Update", "ShoppingCart", new {area = "ivNet.Webstore"})))
+                {
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Item</td>
+                                <td class="numeric">Price</td>
+                                <td class="numeric">Quantity</td>
+                                <td class="numeric">Total</td>
+                                <td class="action"></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in shopitems">
+                                <td>{{ item.Title }}</td>
+                                <td>{{ item.Price | currency : "£" }}</td>
+                                <td>{{ item.Quantity }}</td>
+                                <td>{{ (item.Quantity *  item.Price) | currency : "£"  }}</td>
+                                <td><a class="icon delete postback" href="#"></a></td>
+                            </tr>
+                        </tbody>
+                        
+                        <tfoot>
+                            <tr><td colspan="5">&nbsp;</td></tr>
+                            <tr class="separator">
+                                <td class="update" colspan="5"><button name="command" value="Update" type="submit">Update</button></td>
+                            </tr>
+                            <tr>
+                                <td class="numeric label" colspan="3">Subtotal:</td>
+                                <td class="numeric">{{subtotal | currency : "£"}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="numeric label" colspan="3">VAT (20%):</td>
+                                <td class="numeric">{{vat | currency : "£"}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="numeric label" colspan="3">Total:</td>
+                                <td class="numeric">{{total | currency : "£"}}</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <footer>
+                        <div class="group">
+                            <div class="align left"><button type="submit" name="command" value="ContinueShopping">Continue shopping</button></div>
+                            <div class="align right"><button type="submit" name="command" value="Checkout">Proceed to checkout</button></div>
+                        </div>
+                    </footer>
+                }
+            </article>
+        </div>
+    </div>
+</div>
+
+

@@ -104,7 +104,7 @@ namespace ivNet.Webstore.Services {
 
         public decimal Vat()
         {
-            return Subtotal() * .19m;
+            return Subtotal() * .20m;
         }
 
         public decimal Total()

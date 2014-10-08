@@ -28,7 +28,7 @@ namespace ivNet.Webstore.Controllers {
         }
 
         [Themed]
-        public ActionResult Index() {
+        public ActionResult oldIndex() {
             dynamic shape = _shapeFactory.ShoppingCart();
 
             var query = _shoppingCart.GetProducts().Select(tuple => _shapeFactory.ShoppingCartItem(
@@ -43,6 +43,12 @@ namespace ivNet.Webstore.Controllers {
             shape.Vat        = _shoppingCart.Vat();
 
             return new ShapeResult(this, shape);
+        }
+
+        [Themed]
+        public ActionResult Index()
+        {
+            return View();
         }
 
         [HttpPost]
