@@ -41,15 +41,16 @@ namespace ivNet.WebStore.Controllers.Api
 
             var itemCount = 0;
             foreach (var tuple in enumerable)
-            {
-               
+            {                
                 var contentItem = (ContentItem)tuple.Item1.ContentItem;
+                var productId = contentItem.Id;
                 var titlePart = contentItem.As<TitlePart>();
                 var title = titlePart != null ? titlePart.Title : "(no titlePart attached)";
                 itemCount += tuple.Item2;
 
                 shoppingCartModel.ShopItems.Add(new ShoppingCartItemModel
                 {
+                    ProductId = productId,
                     Quantity = tuple.Item2,
                     Title = title,
                     Price = tuple.Item1.Price,
@@ -59,9 +60,9 @@ namespace ivNet.WebStore.Controllers.Api
             }
 
             shoppingCartModel.ItemCount = itemCount;
-            shoppingCartModel.Total = _shoppingCart.Total();
-            shoppingCartModel.Subtotal = _shoppingCart.Subtotal();
-            shoppingCartModel.Vat = _shoppingCart.Vat();
+            //shoppingCartModel.Total = _shoppingCart.Total();
+            //shoppingCartModel.Subtotal = _shoppingCart.Subtotal();
+            //shoppingCartModel.Vat = _shoppingCart.Vat();
 
             return Request.CreateResponse(HttpStatusCode.OK,
                 shoppingCartModel);

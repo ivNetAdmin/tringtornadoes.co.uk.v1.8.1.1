@@ -11,9 +11,9 @@ namespace ivNet.WebStore.Models
             ShopItems=new List<ShoppingCartItemModel>();
         }
         public List<ShoppingCartItemModel> ShopItems { get; set; }
-        public decimal Total { get; set; }
-        public decimal Subtotal { get; set; }
-        public decimal Vat { get; set; }
+        //public decimal Total { get; set; }
+        //public decimal Subtotal { get; set; }
+        //public decimal Vat { get; set; }
         public int ItemCount { get; set; }
     }
 }

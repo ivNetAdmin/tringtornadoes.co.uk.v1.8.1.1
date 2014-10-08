@@ -6,18 +6,18 @@
 <div class="shopping-cart-view" data-ng-app="ivNet.ShoppingCart.App">
     <div class="cart" data-ng-controller="ShoppingCartController">
         
-        <div ng-show="itemcount < 1">
+        <div class="cart-message">
             <p>You don't have any items in your shopping cart.</p>
             <a class="button" href="/shop">Continue shopping</a>
         </div>
         
-        <div ng-show="itemcount > 0">
+        <div class="cart-detail">
             <div>
                 <p>You have {{itemcount}} item(s) in your shopping cart.</p>
             </div>
-            
+
             <article class="shoppingcart">
-                @using (Html.BeginFormAntiForgeryPost(Url.Action("Update", "ShoppingCart", new {area = "ivNet.Webstore"})))
+                @using (Html.BeginFormAntiForgeryPost(Url.Action("Update", "ShoppingCart", new { area = "ivNet.Webstore" })))
                 {
                     <table>
                         <thead>
@@ -33,17 +33,14 @@
                             <tr ng-repeat="item in shopitems">
                                 <td>{{ item.Title }}</td>
                                 <td>{{ item.Price | currency : "£" }}</td>
-                                <td>{{ item.Quantity }}</td>
+                                <td><input name="prd{{item.ProductId}}" type="number" ng-model="item.Quantity" ng-change="calculate()" min="0" /></td>
                                 <td>{{ (item.Quantity *  item.Price) | currency : "£"  }}</td>
-                                <td><a class="icon delete postback" href="#"></a></td>
+                                <td><span class="icon delete postback" ng-click="removeItem(item.ProductId)"></span></td>
                             </tr>
                         </tbody>
-                        
+
                         <tfoot>
                             <tr><td colspan="5">&nbsp;</td></tr>
-                            <tr class="separator">
-                                <td class="update" colspan="5"><button name="command" value="Update" type="submit">Update</button></td>
-                            </tr>
                             <tr>
                                 <td class="numeric label" colspan="3">Subtotal:</td>
                                 <td class="numeric">{{subtotal | currency : "£"}}</td>

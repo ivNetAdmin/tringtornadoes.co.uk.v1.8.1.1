@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
-using Orchard.Autoroute.Models;
 using Orchard.ContentManagement;
 using Orchard.Core.Title.Models;
 using Orchard.DisplayManagement;
@@ -52,21 +53,16 @@ namespace ivNet.Webstore.Controllers {
         }
 
         [HttpPost]
-        public ActionResult Update(string command, UpdateShoppingCartItemVM[] items){
+        public ActionResult Update(string command, FormCollection form)
+        {
+            UpdateShoppingCart(form);
 
-            UpdateShoppingCart(items);
-
-            if (Request.IsAjaxRequest())
-                return Json(true);
-
-            switch(command) {
+            switch (command)
+            {
                 case "Checkout":
                     return RedirectToAction("SignupOrLogin", "Checkout");
                 case "ContinueShopping":
                     return Redirect("/shop");
-                //case "Update":
-                //    break;
-                    //return RedirectToAction("Index", "ShoppingCart", new { area = "ivNet.WebStore" });
             }
 
             return RedirectToAction("Index");
@@ -82,7 +78,7 @@ namespace ivNet.Webstore.Controllers {
                          let titlePart = item.Item1.As<TitlePart>()
                          select new
                          {
-                             id        = item.Item1.Id,
+                             id = item.Item1.Id,
                              title = titlePart != null ? titlePart.Title : "(No TitlePart attached)",
                              unitPrice = item.Item1.Price,
                              quantity  = item.Item2
@@ -92,12 +88,20 @@ namespace ivNet.Webstore.Controllers {
             return Json(json, JsonRequestBehavior.AllowGet);
         }
 
-        private void UpdateShoppingCart(IEnumerable<UpdateShoppingCartItemVM> items)
+        private void UpdateShoppingCart(FormCollection form)
         {
-            _shoppingCart.Clear();
+            var formKeys = form.AllKeys;
+            var items = (from key in formKeys
+                where key.Length > 3
+                where key.Substring(0, 3) == "prd"
+                select new UpdateShoppingCartItemVM
+                {
+                    ProductId = Convert.ToInt32(key.Substring(3)), Quantity = Convert.ToInt32(form[key])
+                }).ToList();
 
-            if (items == null)
-                return;
+            if (items.Count == 0) return;
+
+            _shoppingCart.Clear();
 
             _shoppingCart.AddRange(items
                 .Where(item => !item.IsRemoved)
