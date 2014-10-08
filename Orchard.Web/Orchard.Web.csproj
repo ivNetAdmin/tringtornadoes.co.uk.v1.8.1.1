@@ -129,6 +129,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Sites\Default\Orchard.sdf" />
+    <Content Include="App_Data\Sites\Default\Settings.txt" />
     <Content Include="Global.asax" />
     <Content Include="Media\Default\BannerCollage\Banner1.png" />
     <Content Include="Media\Default\BannerCollage\Banner2.png" />
@@ -221,6 +223,8 @@
     <Content Include="Media\Default\Docs\Conduct\RespectCodes_MatchOfficials.pdf" />
     <Content Include="Media\Default\Docs\Conduct\RespectCodes_SpectatorsPntsCrs.pdf" />
     <Content Include="Media\Default\Docs\Conduct\RespectCodes_YoungPlayers.pdf" />
+    <Content Include="App_Data\Sites\Default\mappings.bin" />
+    <Content Include="App_Data\Sites\Default\reports.dat" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -273,9 +277,7 @@
       <DependentUpon>HostComponents.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
   </Target>
