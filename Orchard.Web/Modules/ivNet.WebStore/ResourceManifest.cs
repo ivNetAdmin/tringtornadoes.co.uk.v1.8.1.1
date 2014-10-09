@@ -7,12 +7,14 @@ namespace ivNet.Webstore {
         {
             var manifest = builder.Add();
 
-            manifest.DefineStyle("Webstore.Common").SetUrl("common.css");
-            manifest.DefineStyle("Webstore.ShoppingCart").SetUrl("shoppingcart.css").SetDependencies("Webstore.Common");
-            manifest.DefineStyle("Webstore.ShoppingCart.Widget").SetUrl("shoppingcart-widget.css").SetDependencies("Webstore.Common");
-            manifest.DefineStyle("Webstore.Checkout.Summary").SetUrl("checkout-summary.css").SetDependencies("Webstore.Common");
-            manifest.DefineStyle("Webstore.Order").SetUrl("order.css").SetDependencies("Webstore.Common");
-            manifest.DefineStyle("Webstore.SimulatedPSP").SetUrl("simulated-psp.css").SetDependencies("Webstore.Common");
+            manifest.DefineStyle("Webstore.Shoppingcart").SetUrl("shoppingcart.min.css");
+
+            //manifest.DefineStyle("Webstore.Common").SetUrl("common.css");
+            //manifest.DefineStyle("Webstore.ShoppingCart").SetUrl("shoppingcart.css").SetDependencies("Webstore.Common");
+            //manifest.DefineStyle("Webstore.ShoppingCart.Widget").SetUrl("shoppingcart-widget.css").SetDependencies("Webstore.Common");
+            //manifest.DefineStyle("Webstore.Checkout.Summary").SetUrl("checkout-summary.css").SetDependencies("Webstore.Common");
+            //manifest.DefineStyle("Webstore.Order").SetUrl("order.css").SetDependencies("Webstore.Common");
+            //manifest.DefineStyle("Webstore.SimulatedPSP").SetUrl("simulated-psp.css").SetDependencies("Webstore.Common");
 
             //manifest.DefineScript("KnockoutJS").SetUrl("knockout-2.0.0.js").SetVersion("2.0.0");
             //manifest.DefineScript("LinqJS").SetUrl("jquery.linq.min.js").SetVersion("2.2.0.2").SetDependencies("jQuery");

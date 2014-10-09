@@ -4,8 +4,8 @@ ivNetShoppingCart.controller('ShoppingCartController', function ($scope, $http) 
     init();  
 
     function init() {
-        $("div.cart-message").hide();
-        $("div.cart-detail").hide();
+        $('div.cart-message').hide();
+        $('div.cart-detail').hide();
 
         $scope.url = '/api/store/shoppingcart';
 
@@ -30,7 +30,7 @@ ivNetShoppingCart.controller('ShoppingCartController', function ($scope, $http) 
 
     $scope.calculate = function () {
         var subtotal = 0;
-        var itemCount = 0
+        var itemCount = 0;
         for (var i = 0; i < $scope.shopitems.length; i++) {
             var item = $scope.shopitems[i];
             subtotal += (item.Price * item.Quantity);
@@ -40,7 +40,7 @@ ivNetShoppingCart.controller('ShoppingCartController', function ($scope, $http) 
         $scope.itemcount = itemCount;
         $scope.vat = subtotal * .2;
         $scope.subtotal = subtotal;
-        $scope.total = $scope.vat + $scope.subtotal;
+        $scope.total = $scope.vat + $scope.subtotal;             
     };
 
     $scope.removeItem = function(prd) {
