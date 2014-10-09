@@ -1,0 +1,146 @@
+﻿/*==================================================
+ * Shopping Cart Widget
+ * ===============================================*/
+
+article.widget-shopping-cart-widget
+{
+    header{
+        h1{
+            background: #f6f6f6;
+            font-weight: bold;
+            line-height: 24px;
+            margin: 0;
+            padding: 0 5px 0 5px;
+        }
+    }
+
+    article {
+        padding: 5px;
+        line-height: 20px;
+        z-index: 100;
+        span.label{
+            width: 60px;
+            font-style: italic;
+            color: #aaa;
+            display: inline-block;
+        }
+    }
+}
+
+.group .align.left {
+     float: left;
+}
+
+.group .align.right {
+     float: right;
+}
+
+.icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url("../images/sprites.png");
+}
+
+.icon.edit {
+    background-position: -8px -40px;
+}
+
+.icon.edit:hover {
+    background-position: -40px -40px;
+}
+
+.icon.delete {
+    background-position: -8px -7px;
+}
+
+.icon.delete:hover {
+    background-position: -39px -7px;
+}
+
+ul.bullets li {
+    background: url("../images/bullets.png") no-repeat;
+    line-height: 30px;
+    list-style: none;
+    padding-left: 15px;
+}
+
+ul.bullets.action li {
+    background-position: 0 0;
+}
+
+ul.bullets.action li:hover {
+    background-position: 1px 0;
+}
+
+ul.bullets li a 
+{
+    text-decoration: none;
+}
+
+ul.bullets li a:hover
+{
+    color: #434343;
+}
+
+article.shoppingcart {
+    width: 100%;
+}
+
+article.shoppingcart table {
+    width: 100%;   
+}
+
+article.shoppingcart td {
+    padding: 7px 3px 4px 4px;
+    vertical-align: middle;
+}
+
+article.shoppingcart table thead td {
+    background: #f6f6f6;
+    font-weight: bold;
+}
+
+article.shoppingcart table tfoot tr.separator td {
+    border-bottom: 1px solid #ccc;
+}
+
+article.shoppingcart table tfoot td {
+    font-weight: bold;
+}
+
+article.shoppingcart footer {
+    margin-top: 20px;
+}
+
+article.shoppingcart td.numeric {
+    width: 75px;
+    text-align: right;
+}
+
+article.addresses {
+    margin: 10px 0 10px 0;
+    padding: 0 40px 10px 20px;
+}
+
+article.addresses:after {
+    clear:both;
+    height:0;
+    content:".";
+    display:block;
+    visibility:hidden;
+    zoom:1;
+}
+
+article.addresses .invoice-address{
+    float: left;
+}
+
+article.addresses .shipping-address{
+    float: right;
+}
+
+ul.address-fields {
+    margin: 0;
+    list-style: none;   
+}

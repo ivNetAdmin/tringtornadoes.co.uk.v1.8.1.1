@@ -98,6 +98,10 @@
     <Content Include="Styles\shoppingcart.css">
       <DependentUpon>shoppingcart.less</DependentUpon>
     </Content>
+    <Content Include="Styles\shoppingcart.css.map">
+      <DependentUpon>shoppingcart.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\shoppingcart.less" />
     <Content Include="Styles\shoppingcart.min.css">
       <DependentUpon>shoppingcart.css</DependentUpon>
     </Content>
@@ -230,14 +234,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Styles\shoppingcart.less" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Styles\shoppingcart.css.map">
-      <DependentUpon>shoppingcart.css</DependentUpon>
-    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
