@@ -174,6 +174,7 @@
     <Compile Include="Handlers\AddressHandler.cs" />
     <Compile Include="Handlers\CustomerHandler.cs" />
     <Compile Include="Handlers\ProductHandler.cs" />
+    <Compile Include="Helpers\PayPalLog.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\AddressPart.cs" />

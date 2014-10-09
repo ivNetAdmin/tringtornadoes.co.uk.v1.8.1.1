@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
+using ivNet.WebStore.Helpers;
 using ivNet.WebStore.Models;
 using Newtonsoft.Json;
 using Orchard;
@@ -119,37 +120,36 @@ namespace ivNet.Webstore.Controllers {
             return new ShapeResult(this, _shapeFactory.Order_PaymentResponse(Order: order, PaymentResponse: args));
         }
 
+        //FormCollection result
         [HttpPost]
         public HttpStatusCodeResult IPN(FormCollection result)
         {
             try
             {
                 //throw new Exception("hello mum - error");
+
+                PayPalLog.Debug(JsonConvert.SerializeObject(result["payer_email"]));
                 
-                Logger.Debug("hello mum");
-                Logger.Debug(JsonConvert.SerializeObject(result));
-                
-                var payPalPaymentInfo = new PayPalPaymentInfo();
+                //var payPalPaymentInfo = new PayPalPaymentInfo();
 
-                TryUpdateModel(payPalPaymentInfo, result.ToValueProvider());
+                //TryUpdateModel(payPalPaymentInfo, result.ToValueProvider());
 
-                var model = new PayPalListenerModel();
-                model.PayPalPaymentInfo = payPalPaymentInfo;
+                //var model = new PayPalListenerModel();
+                //model.PayPalPaymentInfo = payPalPaymentInfo;
 
-                var parameters = Request.BinaryRead(Request.ContentLength);
+                //var parameters = Request.BinaryRead(Request.ContentLength);
 
-                if (parameters != null)
-                {
-                //    model.GetStatus(parameters);
-                }
+                //if (parameters != null)
+                //{
+                ////    model.GetStatus(parameters);
+                //}
 
+                //var order = _orderService.GetOrderByNumber(1013.ToString(CultureInfo.InvariantCulture));
+                //_orderService.UpdateOrderStatus(order, "Hello mum");
 
-                var order = _orderService.GetOrderByNumber(1013.ToString(CultureInfo.InvariantCulture));
-                _orderService.UpdateOrderStatus(order, "Hello mum");
+                //order = _orderService.GetOrderByNumber(1006.ToString(CultureInfo.InvariantCulture));
 
-                order = _orderService.GetOrderByNumber(1006.ToString(CultureInfo.InvariantCulture));
-
-                _orderService.UpdateOrderStatus(order, "paid");
+                //_orderService.UpdateOrderStatus(order, "paid");
 
                 return new HttpStatusCodeResult(200, "Success");
             }
