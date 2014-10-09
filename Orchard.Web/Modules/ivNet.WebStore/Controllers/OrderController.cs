@@ -94,31 +94,31 @@ namespace ivNet.Webstore.Controllers {
             return new ShapeResult(this, shape);
         }
 
-        [Themed]
-        public ActionResult PaymentResponse() {
+        //[Themed]
+        //public ActionResult PaymentResponse() {
 
-            var args = new PaymentResponse(HttpContext);
+        //    var args = new PaymentResponse(HttpContext);
 
-            foreach (var handler in _paymentServiceProviders) {
-                handler.ProcessResponse(args);
+        //    foreach (var handler in _paymentServiceProviders) {
+        //        handler.ProcessResponse(args);
 
-                if (args.WillHandleResponse)
-                    break;
-            }
+        //        if (args.WillHandleResponse)
+        //            break;
+        //    }
 
-            if(!args.WillHandleResponse)
-                throw new OrchardException(_t("Such things mean trouble"));
+        //    if(!args.WillHandleResponse)
+        //        throw new OrchardException(_t("Such things mean trouble"));
 
-            var order = _orderService.GetOrderByNumber(args.OrderReference);
-            _orderService.UpdateOrderStatus(order, args);
+        //    var order = _orderService.GetOrderByNumber(args.OrderReference);
+        //    _orderService.UpdateOrderStatus(order, args);
 
-            if (order.Status == OrderStatus.Paid) {
-                // Send some notification mail message to the customer that the order was paid.
-                // We may also initiate the shipping process from here
-            }
+        //    if (order.Status == OrderStatus.Paid) {
+        //        // Send some notification mail message to the customer that the order was paid.
+        //        // We may also initiate the shipping process from here
+        //    }
 
-            return new ShapeResult(this, _shapeFactory.Order_PaymentResponse(Order: order, PaymentResponse: args));
-        }
+        //    return new ShapeResult(this, _shapeFactory.Order_PaymentResponse(Order: order, PaymentResponse: args));
+        //}
 
         //FormCollection result
         [HttpPost]
@@ -126,36 +126,45 @@ namespace ivNet.Webstore.Controllers {
         {
             try
             {
-                //throw new Exception("hello mum - error");
+                                   
+                var payPalPaymentInfo = new PayPalPaymentInfo();                
 
-                PayPalLog.Debug(JsonConvert.SerializeObject(result["payer_email"]));
-                
-                //var payPalPaymentInfo = new PayPalPaymentInfo();
+                TryUpdateModel(payPalPaymentInfo, result.ToValueProvider());
 
-                //TryUpdateModel(payPalPaymentInfo, result.ToValueProvider());
+                PayPalLog.Debug(JsonConvert.SerializeObject(result));
+                PayPalLog.Debug(JsonConvert.SerializeObject(payPalPaymentInfo));
 
-                //var model = new PayPalListenerModel();
-                //model.PayPalPaymentInfo = payPalPaymentInfo;
+                var model = new PayPalListenerModel {PayPalPaymentInfo = payPalPaymentInfo};                
 
-                //var parameters = Request.BinaryRead(Request.ContentLength);
+                var parameters = Request.BinaryRead(Request.ContentLength);
 
-                //if (parameters != null)
-                //{
-                ////    model.GetStatus(parameters);
-                //}
+                if (parameters != null)
+                {
+                    model.GetStatus(parameters);
 
-                //var order = _orderService.GetOrderByNumber(1013.ToString(CultureInfo.InvariantCulture));
-                //_orderService.UpdateOrderStatus(order, "Hello mum");
-
-                //order = _orderService.GetOrderByNumber(1006.ToString(CultureInfo.InvariantCulture));
-
-                //_orderService.UpdateOrderStatus(order, "paid");
+                    var orderNumber = Convert.ToInt32(payPalPaymentInfo.invoice);
+                    if (orderNumber > 0)
+                    {
+                        var order = _orderService.GetOrderByNumber(orderNumber.ToString(CultureInfo.InvariantCulture));
+                        _orderService.UpdateOrderStatus(order, payPalPaymentInfo);
+                    }
+                    else
+                    {
+                        PayPalLog.Debug(string.Format("Unknown invoice [{0}] {1}", orderNumber,
+                            JsonConvert.SerializeObject(payPalPaymentInfo)));
+                    }
+                }
+                else
+                {
+                    PayPalLog.Debug(string.Format("No PayPal return parameters [{0}]",
+                        JsonConvert.SerializeObject(result)));
+                }
 
                 return new HttpStatusCodeResult(200, "Success");
             }
             catch (Exception ex)
-            {
-                Logger.Error(ex.Message);
+            {                
+                PayPalLog.Error(ex);
                 return new HttpStatusCodeResult(500, "Error");
             }
         }

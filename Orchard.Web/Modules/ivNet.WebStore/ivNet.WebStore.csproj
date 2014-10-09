@@ -127,8 +127,8 @@
     <Content Include="Views\Order.PaymentResponse.cshtml" />
     <Content Include="Views\OrderAdmin\Edit.cshtml" />
     <Content Include="Views\OrderAdmin\Index.cshtml" />
-    <Content Include="Views\Order\Order.Error.cshtml" />
-    <Content Include="Views\Order\Order.Thankyou.cshtml" />
+    <Content Include="Views\Order\Error.cshtml" />
+    <Content Include="Views\Order\Thankyou.cshtml" />
     <Content Include="Views\Parts.Product.AddButton.cshtml" />
     <Content Include="Views\Parts.Product.cshtml" />
     <Content Include="Views\Parts.Product.SummaryAdmin.cshtml" />

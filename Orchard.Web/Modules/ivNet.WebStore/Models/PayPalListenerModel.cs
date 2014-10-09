@@ -2,6 +2,8 @@
 using System.IO;
 using System.Net;
 using System.Text;
+using ivNet.WebStore.Helpers;
+using Newtonsoft.Json;
 
 namespace ivNet.WebStore.Models
 {
@@ -32,13 +34,12 @@ namespace ivNet.WebStore.Models
 
                 }
                 else if (status == "INVALID")
-                {
-
+                {                    
                     //log for manual investigation             
                 }
                 else
                 {
-                    //log response/ipn data for manual investigation             
+                    PayPalLog.Debug(string.Format("Unknown status[{0}] {1}",status,JsonConvert.SerializeObject(PayPalPaymentInfo)));
                 }
 
             }

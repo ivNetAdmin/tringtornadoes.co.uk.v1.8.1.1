@@ -113,7 +113,7 @@ namespace ivNet.Webstore {
                 .Column<decimal>("Vat", c => c.NotNull())
                 .Column<string>("Number", c => c.WithLength(255))
                 .Column<string>("Status", c => c.WithLength(50).NotNull())
-                .Column<string>("PaymentServiceProviderResponse", c => c.WithLength(null))
+                .Column<string>("PaymentServiceProviderResponse", c => c.Unlimited())
                 .Column<string>("PaymentReference", c => c.WithLength(50))
                 .Column<DateTime>("PaidAt", c => c.Nullable())
                 .Column<DateTime>("CompletedAt", c => c.Nullable())
@@ -141,6 +141,13 @@ namespace ivNet.Webstore {
                 "ProductRecord", new[] {"Id"});
 
             return 6;
-        }      
+        }
+
+        public int UpdateFrom6()
+        {
+            SchemaBuilder.AlterTable("ivNet_WebStore_OrderRecord", table => table
+                .AlterColumn("PaymentServiceProviderResponse", column => column.Unlimited()));
+            return 7;
+        }
     }
 }

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ivNet.WebStore.Models;
+using Newtonsoft.Json;
 using Orchard.ContentManagement;
 using Orchard.Data;
 using ivNet.Webstore.Extensibility;
@@ -79,11 +81,47 @@ namespace ivNet.Webstore.Services {
             return _orderRepository.Get(orderId);
         }
 
-        public void UpdateOrderStatus(OrderRecord order, PaymentResponse paymentResponse) {
+        //public void UpdateOrderStatus(OrderRecord order, PaymentResponse paymentResponse) {
+        //    OrderStatus orderStatus;
+
+        //    switch (paymentResponse.Status) {
+        //        case PaymentResponseStatus.Success:
+        //            orderStatus = OrderStatus.Paid;
+        //            break;
+        //        default:
+        //            orderStatus = OrderStatus.Cancelled;
+        //            break;
+        //    }
+            
+        //    if (order.Status == orderStatus)
+        //        return;
+
+        //    order.Status = orderStatus;
+        //    order.PaymentServiceProviderResponse = paymentResponse.ResponseText;
+        //    order.PaymentReference = paymentResponse.PaymentReference;
+
+        //    switch(order.Status) {
+        //        case OrderStatus.Paid:
+        //            order.PaidAt = _dateTimeService.Now;
+        //            break;
+        //        case OrderStatus.Completed:
+        //            order.CompletedAt = _dateTimeService.Now;
+        //            break;
+        //        case OrderStatus.Cancelled:
+        //            order.CancelledAt = _dateTimeService.Now;
+        //            break;
+        //    }
+
+        //    _orderRepository.Update(order);
+        //}
+
+        public void UpdateOrderStatus(OrderRecord order, PayPalPaymentInfo payPalPaymentInfo)
+        {           
             OrderStatus orderStatus;
 
-            switch (paymentResponse.Status) {
-                case PaymentResponseStatus.Success:
+            switch (payPalPaymentInfo.payment_status.ToLower())
+            {                    
+                case "completed":
                     orderStatus = OrderStatus.Paid;
                     break;
                 default:
@@ -91,47 +129,12 @@ namespace ivNet.Webstore.Services {
                     break;
             }
             
-            if (order.Status == orderStatus)
-                return;
-
-            order.Status = orderStatus;
-            order.PaymentServiceProviderResponse = paymentResponse.ResponseText;
-            order.PaymentReference = paymentResponse.PaymentReference;
-
-            switch(order.Status) {
-                case OrderStatus.Paid:
-                    order.PaidAt = _dateTimeService.Now;
-                    break;
-                case OrderStatus.Completed:
-                    order.CompletedAt = _dateTimeService.Now;
-                    break;
-                case OrderStatus.Cancelled:
-                    order.CancelledAt = _dateTimeService.Now;
-                    break;
-            }
-
-            _orderRepository.Update(order);
-        }
-
-        public void UpdateOrderStatus(OrderRecord order, string paymentResponse)
-        {           
-            OrderStatus orderStatus;
-
-            //switch (paymentResponse.Status) {
-            //    case PaymentResponseStatus.Success:
-                    orderStatus = OrderStatus.Paid;
-            //        break;
-            //    default:
-            //        orderStatus = OrderStatus.Cancelled;
-             //       break;
-            //}
-            
            // if (order.Status == orderStatus)
            //     return;
 
             order.Status = orderStatus;
-           // order.PaymentServiceProviderResponse = paymentResponse.ResponseText;
-           // order.PaymentReference = paymentResponse.PaymentReference;
+            order.PaymentServiceProviderResponse = JsonConvert.SerializeObject(payPalPaymentInfo);
+            order.PaymentReference = payPalPaymentInfo.txn_id;
 
             switch(order.Status) {
                 case OrderStatus.Paid:

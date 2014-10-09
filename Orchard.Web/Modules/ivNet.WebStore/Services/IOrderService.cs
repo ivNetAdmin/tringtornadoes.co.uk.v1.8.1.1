@@ -2,6 +2,7 @@
 using System.Linq;
 using ivNet.Webstore.Extensibility;
 using ivNet.Webstore.Models;
+using ivNet.WebStore.Models;
 using Orchard;
 
 namespace ivNet.Webstore.Services {
@@ -20,7 +21,7 @@ namespace ivNet.Webstore.Services {
         IEnumerable<OrderRecord> GetOrders(int customerId);
         IQueryable<OrderRecord> GetOrders();
         OrderRecord GetOrder(int id);
-        void UpdateOrderStatus(OrderRecord order, PaymentResponse paymentResponse); 
-        void UpdateOrderStatus(OrderRecord order, string paymentResponse);
+        
+        void UpdateOrderStatus(OrderRecord order, PayPalPaymentInfo payPalPaymentInfo);
     }
 }
