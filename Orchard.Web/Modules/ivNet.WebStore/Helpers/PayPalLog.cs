@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 
 namespace ivNet.WebStore.Helpers
 {
@@ -23,6 +24,43 @@ namespace ivNet.WebStore.Helpers
             var sw = new System.IO.StreamWriter(ErrorFilename, true);
             sw.WriteLine(string.Format("{0} {1} [{2}]", DateTime.Now, ex.Message, ex.InnerException));
             sw.Close();
+        }
+
+        public static List<string> GetAll()
+        {
+            var logs = new List<string>();
+            logs.AddRange(GetErrors());
+            logs.AddRange(GetDebug());
+
+            return logs;
+        }
+
+        public static List<string> GetErrors()
+        {
+            var logs = new List<string>();
+
+            var sr = new System.IO.StreamReader(ErrorFilename, true);
+            while (!sr.EndOfStream)
+            {
+                logs.Add(string.Format("Error: {0}", sr.ReadLine()));
+            }
+            sr.Close();
+
+            return logs;
+        }
+
+        public static List<string> GetDebug()
+        {
+            var logs = new List<string>();
+
+            var sr = new System.IO.StreamReader(DebugFilename, true);
+            while (!sr.EndOfStream)
+            {
+                logs.Add(string.Format("Debug: {0}", sr.ReadLine()));
+            }
+            sr.Close();
+
+            return logs;
         }
     }
 }

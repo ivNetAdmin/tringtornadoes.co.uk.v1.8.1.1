@@ -80,43 +80,12 @@ namespace ivNet.Webstore.Services {
             var orderId = int.Parse(orderNumber) - 1000;
             return _orderRepository.Get(orderId);
         }
+     
+        public void UpdateOrderStatus(PayPalPaymentInfo payPalPaymentInfo)
+        {
 
-        //public void UpdateOrderStatus(OrderRecord order, PaymentResponse paymentResponse) {
-        //    OrderStatus orderStatus;
+            var order = GetOrderByNumber(payPalPaymentInfo.invoice);
 
-        //    switch (paymentResponse.Status) {
-        //        case PaymentResponseStatus.Success:
-        //            orderStatus = OrderStatus.Paid;
-        //            break;
-        //        default:
-        //            orderStatus = OrderStatus.Cancelled;
-        //            break;
-        //    }
-            
-        //    if (order.Status == orderStatus)
-        //        return;
-
-        //    order.Status = orderStatus;
-        //    order.PaymentServiceProviderResponse = paymentResponse.ResponseText;
-        //    order.PaymentReference = paymentResponse.PaymentReference;
-
-        //    switch(order.Status) {
-        //        case OrderStatus.Paid:
-        //            order.PaidAt = _dateTimeService.Now;
-        //            break;
-        //        case OrderStatus.Completed:
-        //            order.CompletedAt = _dateTimeService.Now;
-        //            break;
-        //        case OrderStatus.Cancelled:
-        //            order.CancelledAt = _dateTimeService.Now;
-        //            break;
-        //    }
-
-        //    _orderRepository.Update(order);
-        //}
-
-        public void UpdateOrderStatus(OrderRecord order, PayPalPaymentInfo payPalPaymentInfo)
-        {           
             OrderStatus orderStatus;
 
             switch (payPalPaymentInfo.payment_status.ToLower())
@@ -129,7 +98,7 @@ namespace ivNet.Webstore.Services {
                     break;
             }
             
-           // if (order.Status == orderStatus)
+            //if (order.Status == orderStatus)
            //     return;
 
             order.Status = orderStatus;
@@ -147,6 +116,8 @@ namespace ivNet.Webstore.Services {
                     order.CancelledAt = _dateTimeService.Now;
                     break;
             }
+
+            _orderRepository.Update(order);
         }
         
 

@@ -93,64 +93,41 @@ namespace ivNet.Webstore.Controllers {
             );
             return new ShapeResult(this, shape);
         }
-
-        //[Themed]
-        //public ActionResult PaymentResponse() {
-
-        //    var args = new PaymentResponse(HttpContext);
-
-        //    foreach (var handler in _paymentServiceProviders) {
-        //        handler.ProcessResponse(args);
-
-        //        if (args.WillHandleResponse)
-        //            break;
-        //    }
-
-        //    if(!args.WillHandleResponse)
-        //        throw new OrchardException(_t("Such things mean trouble"));
-
-        //    var order = _orderService.GetOrderByNumber(args.OrderReference);
-        //    _orderService.UpdateOrderStatus(order, args);
-
-        //    if (order.Status == OrderStatus.Paid) {
-        //        // Send some notification mail message to the customer that the order was paid.
-        //        // We may also initiate the shipping process from here
-        //    }
-
-        //    return new ShapeResult(this, _shapeFactory.Order_PaymentResponse(Order: order, PaymentResponse: args));
-        //}
-
-        //FormCollection result
+      
         [HttpPost]
         public HttpStatusCodeResult IPN(FormCollection result)
         {
             try
-            {
-                                   
+            {                                   
                 var payPalPaymentInfo = new PayPalPaymentInfo();                
 
                 TryUpdateModel(payPalPaymentInfo, result.ToValueProvider());
-
-                PayPalLog.Debug(JsonConvert.SerializeObject(result));
-                PayPalLog.Debug(JsonConvert.SerializeObject(payPalPaymentInfo));
 
                 var model = new PayPalListenerModel {PayPalPaymentInfo = payPalPaymentInfo};                
 
                 var parameters = Request.BinaryRead(Request.ContentLength);
 
-                if (parameters != null)
+
+                if (parameters.Length > 0)
                 {
                     model.GetStatus(parameters);
 
-                    var orderNumber = Convert.ToInt32(payPalPaymentInfo.invoice);
-                    if (orderNumber > 0)
+                    if (Convert.ToInt32(payPalPaymentInfo.invoice) > 0)
                     {
-                        var order = _orderService.GetOrderByNumber(orderNumber.ToString(CultureInfo.InvariantCulture));
-                        _orderService.UpdateOrderStatus(order, payPalPaymentInfo);
+                        try
+                        {
+                            _orderService.UpdateOrderStatus(payPalPaymentInfo);
+                        }
+                        catch (Exception ex)
+                        {
+                            PayPalLog.Debug(string.Format("Error saving order [{0}] {1}", payPalPaymentInfo.invoice,
+                                JsonConvert.SerializeObject(payPalPaymentInfo)));
+                            PayPalLog.Error(ex);
+                        }
                     }
                     else
                     {
-                        PayPalLog.Debug(string.Format("Unknown invoice [{0}] {1}", orderNumber,
+                        PayPalLog.Debug(string.Format("Unknown invoice [{0}] {1}", payPalPaymentInfo.invoice,
                             JsonConvert.SerializeObject(payPalPaymentInfo)));
                     }
                 }
@@ -159,16 +136,15 @@ namespace ivNet.Webstore.Controllers {
                     PayPalLog.Debug(string.Format("No PayPal return parameters [{0}]",
                         JsonConvert.SerializeObject(result)));
                 }
-
-                return new HttpStatusCodeResult(200, "Success");
             }
             catch (Exception ex)
-            {                
+            {
+                PayPalLog.Debug(string.Format("Error unknown [{0}] {1}", ex.Message,
+                                JsonConvert.SerializeObject(result)));
                 PayPalLog.Error(ex);
-                return new HttpStatusCodeResult(500, "Error");
             }
+            return new HttpStatusCodeResult(200, "Success");
         }
-
        
         [Themed]
         public ActionResult ThankYou()

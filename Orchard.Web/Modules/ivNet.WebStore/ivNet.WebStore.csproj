@@ -154,6 +154,7 @@
   <ItemGroup>
     <Compile Include="AdminMenu.cs" />
     <Compile Include="Controllers\AddressAdminController.cs" />
+    <Compile Include="Controllers\Api\LogController.cs" />
     <Compile Include="Controllers\Api\ShoppingCartController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\CustomerAdminController.cs" />

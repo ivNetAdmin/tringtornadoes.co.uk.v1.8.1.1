@@ -9,17 +9,17 @@
     <span class="label">Items:</span> <span class="value" data-bind="text: itemCount()">@itemCount</span>
     <span class="label">Amount:</span> <span class="value" data-bind="text: Globalize.format(calculateTotal(), 'c')">@totalAmount.ToString("c")</span>
     <span>
-        @*<a href="@Url.Action("Index", "ShoppingCart", new { area = "ivNet.Webstore" })">Cart</a>*@
-        <input type="button" onclick="javascript: payPalTest();"/>
+        <a href="@Url.Action("Index", "ShoppingCart", new { area = "ivNet.Webstore" })">Cart</a>
+        @*<input type="button" onclick="javascript: payPalTest();"/>*@
     </span>
 </article>
 
 <script>
     function payPalTest() {
         $.ajax({
-            //url: 'http://localhost:30421/ivNet.WebStore/Order/IPN',
-            url: 'http://ivnet-dev.co.uk/ivNet.WebStore/Order/IPN',
-            type: 'GET',
+            url: 'http://localhost:30421/ivNet.WebStore/Order/IPN',
+            //url: 'http://ivnet-dev.co.uk/ivNet.WebStore/Order/IPN',
+            type: 'POST',
             dataType: 'json',
             //data: { PLInvoiceObject: 'hello mum' },
             success: function (data) {

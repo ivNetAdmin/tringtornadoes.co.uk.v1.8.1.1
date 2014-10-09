@@ -17,15 +17,12 @@ namespace ivNet.WebStore.Controllers.Api
     public class ShoppingCartController : ApiController
     {
         private readonly IShoppingCart _shoppingCart;
-        private readonly dynamic _shapeFactory;
-
+     
         public ShoppingCartController(IShoppingCart shoppingCart, IShapeFactory shapeFactory)
         {
             _shoppingCart = shoppingCart;
-            _shapeFactory = shapeFactory;
         }
-
-        // GET api/Items
+        
         public HttpResponseMessage Get()
         {
             var shoppingCartModel = new ShoppingCartModel();

@@ -22,6 +22,6 @@ namespace ivNet.Webstore.Services {
         IQueryable<OrderRecord> GetOrders();
         OrderRecord GetOrder(int id);
         
-        void UpdateOrderStatus(OrderRecord order, PayPalPaymentInfo payPalPaymentInfo);
+        void UpdateOrderStatus(PayPalPaymentInfo payPalPaymentInfo);
     }
 }
