@@ -16,7 +16,7 @@
     <ExtensionId>ivNet.WebStore</ExtensionId>
     <LoaderName>DynamicExtensionLoader</LoaderName>
     <VirtualPath>~/Modules/ivNet.WebStore/ivNet.WebStore.csproj</VirtualPath>
-    <Hash>8a62111e482cff47</Hash>
+    <Hash>8a6212e4d756d659</Hash>
   </Dependency>
   <Dependency>
     <ExtensionId>Lucene</ExtensionId>

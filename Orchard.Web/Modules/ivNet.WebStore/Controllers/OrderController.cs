@@ -48,7 +48,7 @@ namespace ivNet.Webstore.Controllers {
 
         public ILogger Logger { get; set; }
 
-        [Themed, HttpPost]
+        [Themed]
         public ActionResult Create() {
 
             var user = _authenticationService.GetAuthenticatedUser();

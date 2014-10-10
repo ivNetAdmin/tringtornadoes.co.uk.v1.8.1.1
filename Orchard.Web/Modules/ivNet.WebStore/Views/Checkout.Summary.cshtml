@@ -2,8 +2,10 @@
 @using Orchard.ContentManagement
 @using ivNet.Webstore.Models
 @using Orchard.Core.Title.Models
-@{
+@{   
     Style.Require("Webstore.Shoppingcart");
+    Script.Require("Webstore.ShoppingCart");
+    
     var shoppingCart = Model.ShoppingCart;
     var invoiceAddress = Model.InvoiceAddress;
     var shippingAddress = Model.ShippingAddress;
@@ -11,6 +13,10 @@
     var subtotal = (decimal)shoppingCart.Subtotal;
     var vat = (decimal)shoppingCart.Vat;
     var total = (decimal)shoppingCart.Total;
+   
+    var orderReference = "abc";    
+    var rtnUrl = Url.Action("IPN", "Order", new { area = "ivNet.Webstore" }, HttpContext.Current.Request.Url.Scheme);
+    var createOrderUrl = Url.Action("Create", "Order", new {area = "ivNet.Webstore"});
 }
 @if (!items.Any())
 {
@@ -19,91 +25,113 @@
 }
 else { 
     
-    <article class="shoppingcart" >
-        <h2>Review your order</h2>
-        <p>Please review the information below. Hit the Place Order button to proceed.</p>
-        <table>
-            <thead>
-                <tr>
-                    <td>Item</td>
-                    <td class="numeric">Price</td>
-                    <td class="numeric">Quantity</td>
-                    <td class="numeric">Total</td>
-                </tr>
-            </thead>
-            <tbody>
-                @for (var i = 0; i < items.Count; i++) {
-                    var item = items[i];
-                    var product = (ProductPart) item.Product;
-                    var contentItem = (ContentItem) item.ContentItem;
-                    var titlePart = contentItem.As<TitlePart>();
-                    var title = titlePart != null ? titlePart.Title : "(no titlePart attached)";                  
-                    var quantity = (int) item.Quantity;
-                    var unitPrice = product.Price;
-                    var totalPrice = quantity*unitPrice;
-                    <tr>
-                        <td>@title</td>
-                        <td class="numeric">@unitPrice.ToString("c")</td>
-                        <td class="numeric">@quantity</td>
-                        <td class="numeric">@totalPrice.ToString("c")</td>
-                    </tr>
-                }
+    <div class="shopping-cart-view" data-ng-app="ivNet.ShoppingCart.App">
+        <div class="cart" data-ng-controller="ShoppingCartController">
+
+            <article class="shoppingcart"  >
+                <h2>Review your order</h2>
+                <p>Please review the information below. Hit the Place Order button to proceed.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Item</td>
+                            <td class="numeric">Price</td>
+                            <td class="numeric">Quantity</td>
+                            <td class="numeric">Total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 0; i < items.Count; i++) {
+                            var item = items[i];
+                            var product = (ProductPart) item.Product;
+                            var contentItem = (ContentItem) item.ContentItem;
+                            var titlePart = contentItem.As<TitlePart>();
+                            var title = titlePart != null ? titlePart.Title : "(no titlePart attached)";                  
+                            var quantity = (int) item.Quantity;
+                            var unitPrice = product.Price;
+                            var totalPrice = quantity*unitPrice;
+                            <tr>
+                                <td>@title</td>
+                                <td class="numeric">@unitPrice.ToString("c")</td>
+                                <td class="numeric">@quantity</td>
+                                <td class="numeric">@totalPrice.ToString("c")</td>
+                            </tr>
+                        }
             
-            </tbody>
-            <tfoot>
-                <tr class="separator"><td colspan="4">&nbsp;</td></tr>
-                <tr>
-                    <td class="numeric label" colspan="2">Subtotal:</td>
-                    <td class="numeric">@subtotal.ToString("c")</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="numeric label" colspan="2">VAT (19%):</td>
-                    <td class="numeric">@vat.ToString("c")</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="numeric label" colspan="3">Total:</td>
-                    <td class="numeric">@total.ToString("c")</td>
-                    <td></td>
-                </tr>
-            </tfoot>
-        </table>
-    </article>
+                    </tbody>
+                    <tfoot>
+                        <tr class="separator"><td colspan="4">&nbsp;</td></tr>
+                        <tr>
+                            <td class="numeric label" colspan="2">Subtotal:</td>
+                            <td class="numeric">@subtotal.ToString("c")</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="numeric label" colspan="2">VAT (19%):</td>
+                            <td class="numeric">@vat.ToString("c")</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="numeric label" colspan="3">Total:</td>
+                            <td class="numeric">@total.ToString("c")</td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </article>
     
-    <article class="addresses form">
-        <div class="invoice-address">
-            <h2>Invoice Address</h2>
-            <ul class="address-fields">
-                <li>@invoiceAddress.Name.Value</li>
-                <li>@invoiceAddress.AddressLine1.Value</li>
-                <li>@invoiceAddress.AddressLine2.Value</li>
-                <li>@invoiceAddress.Zipcode.Value</li>
-                <li>@invoiceAddress.City.Value</li>
-                <li>@invoiceAddress.Country.Value</li>
-            </ul>
-        </div>
-        <div class="shipping-address">
-            <h2>Shipping Address</h2>
-            <ul class="address-fields">
-                <li>@shippingAddress.Name.Value</li>
-                <li>@shippingAddress.AddressLine1.Value</li>
-                <li>@shippingAddress.AddressLine2.Value</li>
-                <li>@shippingAddress.Zipcode.Value</li>
-                <li>@shippingAddress.City.Value</li>
-                <li>@shippingAddress.Country.Value</li>
-            </ul>
-        </div>
-    </article>
+            <article class="addresses form">
+                <div class="invoice-address">
+                    <h2>Invoice Address</h2>
+                    <ul class="address-fields">
+                        <li>@invoiceAddress.Name.Value</li>
+                        <li>@invoiceAddress.AddressLine1.Value</li>
+                        <li>@invoiceAddress.AddressLine2.Value</li>
+                        <li>@invoiceAddress.Zipcode.Value</li>
+                        <li>@invoiceAddress.City.Value</li>
+                        <li>@invoiceAddress.Country.Value</li>
+                    </ul>
+                </div>
+                <div class="shipping-address">
+                    <h2>Shipping Address</h2>
+                    <ul class="address-fields">
+                        <li>@shippingAddress.Name.Value</li>
+                        <li>@shippingAddress.AddressLine1.Value</li>
+                        <li>@shippingAddress.AddressLine2.Value</li>
+                        <li>@shippingAddress.Zipcode.Value</li>
+                        <li>@shippingAddress.City.Value</li>
+                        <li>@shippingAddress.Country.Value</li>
+                    </ul>
+                </div>
+            </article>
     
-    <article>
-        <div class="group">
-            <div class="align left"><a href="#">@T("Cancel")</a></div>
-            <div class="align right">
-                @using (Html.BeginFormAntiForgeryPost(Url.Action("Create", "Order", new { area = "ivNet.Webstore" }))) {
+            <article>
+                <div class="group">
+                    <div class="align left"><a href="#">@T("Cancel")</a></div>
+                    <div class="align right">
+                        @*@using (Html.BeginFormAntiForgeryPost(Url.Action("Create", "Order", new { area = "ivNet.Webstore" }))) {
                     <button type="submit">Place Order</button>
-                }
-            </div>
+                }*@
+                
+                        <form name="_xclick" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                            <input type="hidden" name="cmd" value="_xclick">
+                            <input type="hidden" name="business" value="teststore@tringtornadoes.co.uk">
+                            <input type="hidden" name="lc" value="GB">
+                            <input type="hidden" name="item_name" value="items">
+                            <input type="hidden" name="item_number" value="456">
+                            <input type="hidden" name="amount" value="@total.ToString("#.##")">
+                            <input type="hidden" name="currency_code" value="GBP">
+                            <input type="hidden" name="button_subtype" value="services">
+                            <input type="hidden" name="no_note" value="0">
+                            <input type="hidden" name="invoice" value="@orderReference">
+                            <input type="hidden" name="notify_url" value="@rtnUrl">
+
+                            <img src="http://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" ng-click="saveOrder('@createOrderUrl')" alt="Make payments with PayPal - it's fast, free and secure!">
+                        </form>
+
+                    </div>
+                </div>
+            </article>
         </div>
-    </article>
+    </div>
 }

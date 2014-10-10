@@ -7,10 +7,10 @@ ivNetShoppingCart.controller('ShoppingCartController', function ($scope, $http) 
         $('div.cart-message').hide();
         $('div.cart-detail').hide();
 
-        $scope.url = '/api/store/shoppingcart';
+        $scope.cartUrl = '/api/store/shoppingcart';
 
         setTimeout(function() {
-            $http.get($scope.url)
+            $http.get($scope.cartUrl)
                 .success(function(data) {
                     //$scope.total = data.Total;                   
                     //$scope.vat = data.Vat;
@@ -51,5 +51,16 @@ ivNetShoppingCart.controller('ShoppingCartController', function ($scope, $http) 
         } else {
             $("input[name=prd" + prd + "]").val(0);
         }
+    };
+
+    $scope.saveOrder = function(createOrderUrl) {
+        setTimeout(function() {
+            $http.get(createOrderUrl)
+                .success(function(data) {
+                    $('form[name="_xclick"]').submit();
+                })
+                .error(function(data) {
+                });
+        }, 100);
     };
 });

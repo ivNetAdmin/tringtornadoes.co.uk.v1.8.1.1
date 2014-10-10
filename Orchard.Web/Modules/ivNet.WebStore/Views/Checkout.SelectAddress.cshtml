@@ -7,7 +7,7 @@
 
 @using (Html.BeginFormAntiForgeryPost(Url.Action("SelectAddress", "Checkout", new { area = "ivNet.Webstore" })))
 {
-    <article class="form invoice-shipping-address container">
+    <article class="form invoice-shipping-address shoppingcart group">
 
         <div class="col-md-6">@Html.EditorFor(m => addresses.InvoiceAddress)</div>
         <div class="col-md-6"> @Html.EditorFor(m => addresses.ShippingAddress)</div>
