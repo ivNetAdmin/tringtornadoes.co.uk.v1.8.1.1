@@ -74,6 +74,7 @@
     <Content Include="Styles\Theme.min.css">
       <DependentUpon>Theme.css</DependentUpon>
     </Content>
+    <Content Include="Views\Branding.cshtml" />
     <Content Include="Views\Content-StoreItem.cshtml" />
     <None Include="Views\ThemeResources.cshtml" />
     <Content Include="Web.config" />

@@ -63,73 +63,41 @@ namespace ivNet.Webstore.Controllers {
 
             var order = _orderService.CreateOrder(customer.Id, _shoppingCart.Items);
 
-            // Fire the PaymentRequest event
-            var paymentRequest = new PaymentRequest(order);
-            var products = _shoppingCart.GetProducts();
+            return Json(order.Number, JsonRequestBehavior.AllowGet);
 
-            foreach (var productPart in products)
-            {
-                var cakes = productPart;
-            }
-
-            //paymentRequest.OrderDescription = _orderService.GetProducts(order.Details).ToArray();
-
-            foreach (var handler in _paymentServiceProviders) {
-                handler.RequestPayment(paymentRequest);
-
-                // If the handler responded, it will set the action result
-                if (paymentRequest.WillHandlePayment) {
-                    return paymentRequest.ActionResult;
-                }
-            }
-
-            // If we got here, no PSP handled the PaymentRequest event, so we'll just display the order.
-            var shape = _shapeFactory.Order_Created(
-                Order: order,
-                Products: _orderService.GetProducts(order.Details).ToArray(),
-                Customer: customer,
-                InvoiceAddress: (dynamic)_customerService.GetAddress(user.Id, "InvoiceAddress"),
-                ShippingAddress: (dynamic)_customerService.GetAddress(user.Id, "ShippingAddress")
-            );
-            return new ShapeResult(this, shape);
+           
         }
       
         [HttpPost]
         public HttpStatusCodeResult IPN(FormCollection result)
         {
             try
-            {                                   
-                var payPalPaymentInfo = new PayPalPaymentInfo();                
+            {
+                var payPalPaymentInfo = new PayPalPaymentInfo();
 
                 TryUpdateModel(payPalPaymentInfo, result.ToValueProvider());
-
-                var model = new PayPalListenerModel {PayPalPaymentInfo = payPalPaymentInfo};                
-
-                var parameters = Request.BinaryRead(Request.ContentLength);
-
+                
+                var model = new PayPalListenerModel {PayPalPaymentInfo = payPalPaymentInfo};
+                
+                var parameters = Request.BinaryRead(Request.ContentLength);                
 
                 if (parameters.Length > 0)
-                {
-                    model.GetStatus(parameters);
+                {                    
+                    model.GetStatus(parameters);                 
+                    PayPalLog.Debug(payPalPaymentInfo.invoice);
+                    PayPalLog.Debug(payPalPaymentInfo.payment_status);
 
-                    if (Convert.ToInt32(payPalPaymentInfo.invoice) > 0)
+                    try
                     {
-                        try
-                        {
-                            _orderService.UpdateOrderStatus(payPalPaymentInfo);
-                        }
-                        catch (Exception ex)
-                        {
-                            PayPalLog.Debug(string.Format("Error saving order [{0}] {1}", payPalPaymentInfo.invoice,
-                                JsonConvert.SerializeObject(payPalPaymentInfo)));
-                            PayPalLog.Error(ex);
-                        }
+                        _orderService.UpdateOrderStatus(payPalPaymentInfo);
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        PayPalLog.Debug(string.Format("Unknown invoice [{0}] {1}", payPalPaymentInfo.invoice,
+                        PayPalLog.Debug(string.Format("Error saving order [{0}] {1}", payPalPaymentInfo.invoice,
                             JsonConvert.SerializeObject(payPalPaymentInfo)));
+                        PayPalLog.Error(ex);
                     }
+
                 }
                 else
                 {
@@ -140,7 +108,7 @@ namespace ivNet.Webstore.Controllers {
             catch (Exception ex)
             {
                 PayPalLog.Debug(string.Format("Error unknown [{0}] {1}", ex.Message,
-                                JsonConvert.SerializeObject(result)));
+                    result));
                 PayPalLog.Error(ex);
             }
             return new HttpStatusCodeResult(200, "Success");

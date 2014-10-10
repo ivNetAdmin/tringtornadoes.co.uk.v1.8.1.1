@@ -151,6 +151,8 @@
     <Content Include="Media\Default\Teams\U8\U8Photo.jpg" />
     <Content Include="Media\Default\Teams\U9\U9Photo.jpg" />
     <Content Include="Media\Default\Theme\bg.png" />
+    <Content Include="Media\Default\Theme\facebook_logo.jpg" />
+    <Content Include="Media\Default\Theme\twitter_logo.jpg" />
     <Content Include="Media\Default\WebStore\Gloves\gloves-120x120.jpg" />
     <Content Include="Media\Default\WebStore\Gloves\gloves-150x150.jpg" />
     <Content Include="Media\Default\WebStore\Gloves\gloves-250x250.jpg" />

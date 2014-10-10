@@ -56,7 +56,9 @@ ivNetShoppingCart.controller('ShoppingCartController', function ($scope, $http) 
     $scope.saveOrder = function(createOrderUrl) {
         setTimeout(function() {
             $http.get(createOrderUrl)
-                .success(function(data) {
+                .success(function (data) {
+         
+                    $('input[name="invoice"]').val(JSON.parse(data));
                     $('form[name="_xclick"]').submit();
                 })
                 .error(function(data) {

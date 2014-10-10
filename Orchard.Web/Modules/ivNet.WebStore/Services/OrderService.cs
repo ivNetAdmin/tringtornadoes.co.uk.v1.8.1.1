@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ivNet.WebStore.Helpers;
 using ivNet.WebStore.Models;
 using Newtonsoft.Json;
 using Orchard.ContentManagement;
@@ -83,9 +84,8 @@ namespace ivNet.Webstore.Services {
      
         public void UpdateOrderStatus(PayPalPaymentInfo payPalPaymentInfo)
         {
-
-            var order = GetOrderByNumber(payPalPaymentInfo.invoice);
-
+            var order = GetOrderByNumber(payPalPaymentInfo.invoice);         
+            
             OrderStatus orderStatus;
 
             switch (payPalPaymentInfo.payment_status.ToLower())
@@ -125,8 +125,9 @@ namespace ivNet.Webstore.Services {
             return _orderRepository.Fetch(x => x.CustomerId == customerId);
         }
 
-        public IQueryable<OrderRecord> GetOrders() {
-            return _orderRepository.Table;
+        public IQueryable<OrderRecord> GetOrders()
+        {
+            return _orderRepository.Table.OrderByDescending(o => o.Number);
         }
 
         public OrderRecord GetOrder(int id) {

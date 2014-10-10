@@ -13,8 +13,7 @@
     var subtotal = (decimal)shoppingCart.Subtotal;
     var vat = (decimal)shoppingCart.Vat;
     var total = (decimal)shoppingCart.Total;
-   
-    var orderReference = "abc";    
+     
     var rtnUrl = Url.Action("IPN", "Order", new { area = "ivNet.Webstore" }, HttpContext.Current.Request.Url.Scheme);
     var createOrderUrl = Url.Action("Create", "Order", new {area = "ivNet.Webstore"});
 }
@@ -123,7 +122,7 @@ else {
                             <input type="hidden" name="currency_code" value="GBP">
                             <input type="hidden" name="button_subtype" value="services">
                             <input type="hidden" name="no_note" value="0">
-                            <input type="hidden" name="invoice" value="@orderReference">
+                            <input type="hidden" name="invoice"/>
                             <input type="hidden" name="notify_url" value="@rtnUrl">
 
                             <img src="http://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" ng-click="saveOrder('@createOrderUrl')" alt="Make payments with PayPal - it's fast, free and secure!">
