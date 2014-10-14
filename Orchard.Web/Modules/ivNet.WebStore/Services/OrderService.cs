@@ -81,8 +81,8 @@ namespace ivNet.Webstore.Services {
             var orderId = int.Parse(orderNumber) - 1000;
             return _orderRepository.Get(orderId);
         }
-     
-        public void UpdateOrderStatus(PayPalPaymentInfo payPalPaymentInfo)
+
+        public OrderRecord UpdateOrderStatus(PayPalPaymentInfo payPalPaymentInfo)
         {
             var order = GetOrderByNumber(payPalPaymentInfo.invoice);         
             
@@ -117,9 +117,13 @@ namespace ivNet.Webstore.Services {
                     break;
             }
 
-            _orderRepository.Update(order);
-        }
-        
+            //PayPalLog.Debug(JsonConvert.SerializeObject(order));
+
+           // _orderRepository.Update(order);
+
+            PayPalLog.Debug("Updated");
+            return order;
+        }        
 
         public IEnumerable<OrderRecord> GetOrders(int customerId) {
             return _orderRepository.Fetch(x => x.CustomerId == customerId);

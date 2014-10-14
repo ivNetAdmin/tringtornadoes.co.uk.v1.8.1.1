@@ -17,6 +17,7 @@ using Orchard.Themes;
 using ivNet.Webstore.Extensibility;
 using ivNet.Webstore.Models;
 using ivNet.Webstore.Services;
+using Orchard.UI.Notify;
 
 namespace ivNet.Webstore.Controllers {
     public class OrderController : Controller {
@@ -26,6 +27,7 @@ namespace ivNet.Webstore.Controllers {
         private readonly IShoppingCart _shoppingCart;
         private readonly ICustomerService _customerService;
         private readonly IEnumerable<IPaymentServiceProvider> _paymentServiceProviders;
+        private readonly INotifier _notifier;
         private readonly Localizer _t;
 
         public OrderController(
@@ -34,6 +36,7 @@ namespace ivNet.Webstore.Controllers {
             IAuthenticationService authenticationService, 
             IShoppingCart shoppingCart, 
             ICustomerService customerService,
+            INotifier notifier,
             IEnumerable<IPaymentServiceProvider> paymentServiceProviders
             ) {
             _shapeFactory                  = shapeFactory;
@@ -43,6 +46,7 @@ namespace ivNet.Webstore.Controllers {
             _customerService               = customerService;
             _paymentServiceProviders       = paymentServiceProviders;
             _t                             = NullLocalizer.Instance;
+            _notifier = notifier;
             Logger = NullLogger.Instance;
         }
 
@@ -67,7 +71,7 @@ namespace ivNet.Webstore.Controllers {
 
            
         }
-      
+
         [HttpPost]
         public HttpStatusCodeResult IPN(FormCollection result)
         {
@@ -76,20 +80,52 @@ namespace ivNet.Webstore.Controllers {
                 var payPalPaymentInfo = new PayPalPaymentInfo();
 
                 TryUpdateModel(payPalPaymentInfo, result.ToValueProvider());
-                
+
                 var model = new PayPalListenerModel {PayPalPaymentInfo = payPalPaymentInfo};
-                
-                var parameters = Request.BinaryRead(Request.ContentLength);                
+
+                var parameters = Request.BinaryRead(Request.ContentLength);
 
                 if (parameters.Length > 0)
-                {                    
-                    model.GetStatus(parameters);                 
+                {
+                    model.GetStatus(parameters);
                     PayPalLog.Debug(payPalPaymentInfo.invoice);
                     PayPalLog.Debug(payPalPaymentInfo.payment_status);
 
                     try
                     {
-                        _orderService.UpdateOrderStatus(payPalPaymentInfo);
+                        var order = _orderService.GetOrderByNumber(payPalPaymentInfo.invoice);
+
+                        OrderStatus orderStatus;
+
+                        switch (payPalPaymentInfo.payment_status.ToLower())
+                        {
+                            case "completed":
+                                orderStatus = OrderStatus.Paid;
+                                break;
+                            default:
+                                orderStatus = OrderStatus.Cancelled;
+                                break;
+                        }
+
+                        order.Status = orderStatus;
+                        order.PaymentServiceProviderResponse = JsonConvert.SerializeObject(payPalPaymentInfo);
+                        order.PaymentReference = payPalPaymentInfo.txn_id;
+
+                        switch (order.Status)
+                        {
+                            case OrderStatus.Paid:
+                                order.PaidAt = DateTime.Now;
+                                break;
+                            case OrderStatus.Completed:
+                                order.CompletedAt = DateTime.Now;
+                                break;
+                            case OrderStatus.Cancelled:
+                                order.CancelledAt = DateTime.Now;
+                                break;
+                        }
+
+                        _notifier.Add(NotifyType.Information, _t("The order has been saved"));
+
                     }
                     catch (Exception ex)
                     {
@@ -113,7 +149,59 @@ namespace ivNet.Webstore.Controllers {
             }
             return new HttpStatusCodeResult(200, "Success");
         }
-       
+
+        public ActionResult Test()
+        {
+            
+
+            //var order = _orderService.GetOrder(38);
+
+            var payPalPaymentInfo = new PayPalPaymentInfo
+            {
+                invoice = "1035",
+                payment_status = "completed",
+                txn_id = "1234"
+            };
+
+
+            var order = _orderService.GetOrderByNumber(payPalPaymentInfo.invoice);
+
+            OrderStatus orderStatus;
+
+            switch (payPalPaymentInfo.payment_status.ToLower())
+            {
+                case "completed":
+                    orderStatus = OrderStatus.Completed;
+                    break;
+                default:
+                    orderStatus = OrderStatus.Cancelled;
+                    break;
+            }
+
+            order.Status = orderStatus;
+            order.PaymentServiceProviderResponse = JsonConvert.SerializeObject(payPalPaymentInfo);
+            order.PaymentReference = payPalPaymentInfo.txn_id;
+
+            switch (order.Status)
+            {
+                case OrderStatus.Paid:
+                    order.PaidAt = DateTime.Now;
+                    break;
+                case OrderStatus.Completed:
+                    order.CompletedAt = DateTime.Now;
+                    break;
+                case OrderStatus.Cancelled:
+                    order.CancelledAt = DateTime.Now;
+                    break;
+            }
+
+            _notifier.Add(NotifyType.Information, _t("The order has been saved"));
+
+
+            //_orderService.UpdateOrderStatus(new PayPalPaymentInfo { invoice = "1038", payer_status = "Paid" , payment_status="completed"});
+            return new HttpStatusCodeResult(200, "Success");
+        }
+
         [Themed]
         public ActionResult ThankYou()
         {

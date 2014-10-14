@@ -63,6 +63,7 @@
                         <div class="group">
                             <div class="align left"><button type="submit" name="command" value="ContinueShopping">Continue shopping</button></div>
                             <div class="align right"><button type="submit" name="command" value="Checkout">Proceed to checkout</button></div>
+                            <input type="button" onclick="testSubmit()"/>
                         </div>
                     </footer>
                 }
@@ -71,4 +72,17 @@
     </div>
 </div>
 
+<script>
+    function testSubmit() {
 
+        $.ajax({
+            url: '@Url.Action("Test", "Order", new { area = "ivNet.Webstore" })',
+            type: 'GET',
+            dataType: 'json',
+           
+            success: function (data) {
+                $('.result').html(data);
+            }
+        });
+    }
+</script>

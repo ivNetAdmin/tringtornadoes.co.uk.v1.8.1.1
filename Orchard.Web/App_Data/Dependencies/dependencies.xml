@@ -147,8 +147,8 @@
   </Dependency>
   <Dependency>
     <ModuleName>ivNet.WebStore</ModuleName>
-    <VirtualPath>~/Modules/ivNet.WebStore/bin/ivNet.WebStore.dll</VirtualPath>
-    <LoaderName>PrecompiledExtensionLoader</LoaderName>
+    <VirtualPath>~/Modules/ivNet.WebStore/ivNet.WebStore.csproj</VirtualPath>
+    <LoaderName>DynamicExtensionLoader</LoaderName>
     <References>
       <Reference>
         <Name>Orchard.Alias</Name>
@@ -184,6 +184,16 @@
         <Name>Orchard.Widgets</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
         <VirtualPath>~/Modules/Orchard.Widgets/bin/Orchard.Widgets.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>PayPalCoreSDK</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/ivNet.WebStore/bin/PayPalCoreSDK.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>RestApiSDK</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/ivNet.WebStore/bin/RestApiSDK.dll</VirtualPath>
       </Reference>
     </References>
   </Dependency>
