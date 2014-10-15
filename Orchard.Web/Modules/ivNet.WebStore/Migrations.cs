@@ -125,6 +125,7 @@ namespace ivNet.Webstore {
                 .Column<int>("OrderRecord_Id", c => c.NotNull())
                 .Column<int>("ProductId", c => c.NotNull())
                 .Column<int>("Quantity", c => c.NotNull())
+                .Column<string>("Size", c => c.WithLength(50))
                 .Column<decimal>("UnitPrice", c => c.NotNull())
                 .Column<decimal>("VatRate", c => c.NotNull())
                 .Column<decimal>("Vat", c => c.NotNull())

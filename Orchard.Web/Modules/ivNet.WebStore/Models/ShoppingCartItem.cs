@@ -5,8 +5,10 @@ namespace ivNet.Webstore.Models {
     public sealed class ShoppingCartItem
     {
         public int ProductId { get; private set; }
+        public String Size { get; private set; }
 
         private int _quantity;
+        
         public int Quantity
         {
             get { return _quantity; }
@@ -23,10 +25,11 @@ namespace ivNet.Webstore.Models {
         {
         }
 
-        public ShoppingCartItem(int productId, int quantity = 1)
-        {
+        public ShoppingCartItem(int productId, string size, int quantity = 1)
+        {           
             ProductId = productId;
             Quantity = quantity;
+            Size = size;
         }
     }
 }

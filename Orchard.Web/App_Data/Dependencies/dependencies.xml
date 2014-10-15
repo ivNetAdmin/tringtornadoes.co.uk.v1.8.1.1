@@ -111,6 +111,12 @@
     </References>
   </Dependency>
   <Dependency>
+    <ModuleName>Orchard.Fields</ModuleName>
+    <VirtualPath>~/Modules/Orchard.Fields/bin/Orchard.Fields.dll</VirtualPath>
+    <LoaderName>PrecompiledExtensionLoader</LoaderName>
+    <References />
+  </Dependency>
+  <Dependency>
     <ModuleName>Orchard.Scripting</ModuleName>
     <VirtualPath>~/Modules/Orchard.Scripting/bin/Orchard.Scripting.dll</VirtualPath>
     <LoaderName>PrecompiledExtensionLoader</LoaderName>
@@ -147,8 +153,8 @@
   </Dependency>
   <Dependency>
     <ModuleName>ivNet.WebStore</ModuleName>
-    <VirtualPath>~/Modules/ivNet.WebStore/ivNet.WebStore.csproj</VirtualPath>
-    <LoaderName>DynamicExtensionLoader</LoaderName>
+    <VirtualPath>~/Modules/ivNet.WebStore/bin/ivNet.WebStore.dll</VirtualPath>
+    <LoaderName>PrecompiledExtensionLoader</LoaderName>
     <References>
       <Reference>
         <Name>Orchard.Alias</Name>
@@ -159,6 +165,11 @@
         <Name>Orchard.Autoroute</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
         <VirtualPath>~/Modules/Orchard.Autoroute/bin/Orchard.Autoroute.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Fields</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Fields/bin/Orchard.Fields.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Orchard.Scripting</Name>
@@ -684,12 +695,6 @@
         <VirtualPath>~/Modules/Orchard.Workflows/bin/Orchard.Workflows.dll</VirtualPath>
       </Reference>
     </References>
-  </Dependency>
-  <Dependency>
-    <ModuleName>Orchard.Fields</ModuleName>
-    <VirtualPath>~/Modules/Orchard.Fields/bin/Orchard.Fields.dll</VirtualPath>
-    <LoaderName>PrecompiledExtensionLoader</LoaderName>
-    <References />
   </Dependency>
   <Dependency>
     <ModuleName>Orchard.ImageEditor</ModuleName>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
@@ -107,8 +108,7 @@ namespace ivNet.Webstore.Controllers {
                                 break;
                         }
 
-                        order.Status = orderStatus;
-                        order.PaymentServiceProviderResponse = JsonConvert.SerializeObject(payPalPaymentInfo);
+                        order.Status = orderStatus;                       
                         order.PaymentReference = payPalPaymentInfo.txn_id;
 
                         switch (order.Status)
@@ -123,8 +123,7 @@ namespace ivNet.Webstore.Controllers {
                                 order.CancelledAt = DateTime.Now;
                                 break;
                         }
-
-                        _notifier.Add(NotifyType.Information, _t("The order has been saved"));
+                      
 
                     }
                     catch (Exception ex)
@@ -150,52 +149,16 @@ namespace ivNet.Webstore.Controllers {
             return new HttpStatusCodeResult(200, "Success");
         }
 
-        public ActionResult Test()
+        public ActionResult Test(string id, int status)
         {
             
 
-            //var order = _orderService.GetOrder(38);
+            var order = _orderService.GetOrderByNumber(id);
 
-            var payPalPaymentInfo = new PayPalPaymentInfo
-            {
-                invoice = "1035",
-                payment_status = "completed",
-                txn_id = "1234"
-            };
+            order.Status = status == 1 ? OrderStatus.Completed : OrderStatus.New;
 
-
-            var order = _orderService.GetOrderByNumber(payPalPaymentInfo.invoice);
-
-            OrderStatus orderStatus;
-
-            switch (payPalPaymentInfo.payment_status.ToLower())
-            {
-                case "completed":
-                    orderStatus = OrderStatus.Completed;
-                    break;
-                default:
-                    orderStatus = OrderStatus.Cancelled;
-                    break;
-            }
-
-            order.Status = orderStatus;
-            order.PaymentServiceProviderResponse = JsonConvert.SerializeObject(payPalPaymentInfo);
-            order.PaymentReference = payPalPaymentInfo.txn_id;
-
-            switch (order.Status)
-            {
-                case OrderStatus.Paid:
-                    order.PaidAt = DateTime.Now;
-                    break;
-                case OrderStatus.Completed:
-                    order.CompletedAt = DateTime.Now;
-                    break;
-                case OrderStatus.Cancelled:
-                    order.CancelledAt = DateTime.Now;
-                    break;
-            }
-
-            _notifier.Add(NotifyType.Information, _t("The order has been saved"));
+                          
+           // _notifier.Add(NotifyType.Information, _t(string.Format("The order [{0}] has been saved", payPalPaymentInfo.invoice)));
 
 
             //_orderService.UpdateOrderStatus(new PayPalPaymentInfo { invoice = "1038", payer_status = "Paid" , payment_status="completed"});

@@ -39,6 +39,7 @@
             <tr>
                 <th scope="col">@T("Sku")</th>
                 <th scope="col">@T("Price")</th>
+                <th scope="col">@T("Size")</th>
                 <th scope="col">@T("Quantity")</th>
                 <th scope="col">@T("Total")</th>
             </tr>
@@ -48,13 +49,14 @@
         <tr>
             <td>@detail.Sku</td>
             <td>@detail.Price.ToString("c")</td>
+            <td>@detail.Size</td>
             <td>@detail.Quantity</td>
             <td>@detail.Total.ToString("c")</td>
         </tr>
         } 
         <tfoot>
             <td><strong>Totals</strong></td>
-            <td></td>
+            <td></td><td></td>
             <td><strong>@quantity</strong></td>
             <td><strong>@order.Total.ToString("c")</strong></td>
         </tfoot>

@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Orchard.ContentManagement;
 using Orchard.Data;
 using Orchard.DisplayManagement;
+using Orchard.Environment.ShellBuilders.Models;
 using Orchard.Localization;
 using Orchard.Settings;
 using Orchard.UI.Admin;
@@ -73,7 +74,8 @@ namespace ivNet.Webstore.Controllers
                         Sku: productRecord.Sku,
                         Price: productRecord.Price,
                         Quantity: record.Quantity,
-                        Total: record.Total
+                        Total: record.Total,
+                        Size: record.Size
                     )).ToArray(),
                 EditModel: editModel
             );

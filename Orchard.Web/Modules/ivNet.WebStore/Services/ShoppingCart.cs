@@ -43,13 +43,13 @@ namespace ivNet.Webstore.Services {
             _orchardServices = orchardServices;
         }
 
-        public void Add(int productId, int quantity = 1)
+        public void Add(int productId, string size, int quantity = 1)
         {
             var item = Items.SingleOrDefault(x => x.ProductId == productId);
 
             if (item == null)
             {
-                item = new ShoppingCartItem(productId, quantity);
+                item = new ShoppingCartItem(productId, size, quantity);
                 ItemsInternal.Add(item);
             }
             else
@@ -60,7 +60,7 @@ namespace ivNet.Webstore.Services {
 
         public void AddRange(IEnumerable<ShoppingCartItem> items) {
             foreach (var item in items) {
-                Add(item.ProductId, item.Quantity);
+                Add(item.ProductId, item.Size, item.Quantity);
             }
         }
 

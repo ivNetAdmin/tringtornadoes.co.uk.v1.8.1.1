@@ -23,6 +23,7 @@
                 <th scope="col">@T("Total")</th>
                 <th scope="col">@T("Created")</th>
                 <th scope="col">@T("Paid")</th>
+                <th scope="col">@T("Reference")</th>
                 <th scope="col">@T("Actions")</th>
             </tr>
         </thead>
@@ -32,9 +33,10 @@
             <td>@order.Number</td>
             <td>@order.Status</td>
             <td><a href="@Url.Action("ListOrders", "CustomerAdmin", new { id = order.CustomerId })">@order.CustomerId</a></td>
-            <td>@order.Total</td>
+            <td>@order.Total.ToString("c")</td>
             <td>@order.CreatedAt</td>
             <td>@order.PaidAt</td>
+            <td>@order.PaymentReference</td>
             <td>
                 <div>
                     <a href="@Url.Action("Edit", "OrderAdmin", new {order.Id, returnUrl = Request.Url.PathAndQuery})" title="@T("Edit")">@T("Edit")</a>

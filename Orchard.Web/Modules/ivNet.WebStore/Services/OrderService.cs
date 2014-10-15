@@ -56,6 +56,7 @@ namespace ivNet.Webstore.Services {
                     OrderRecord_Id     = order.Id,
                     ProductId   = product.Id,
                     Quantity    = item.Quantity,
+                    Size        = item.Size,
                     UnitPrice   = product.Price,
                     VatRate     = .19m
                 };

@@ -5,10 +5,12 @@ ivNet.UI = ivNet.UI || {};
 ivNet.UI.Theme = (function ($) {
     var my = {};
 
-    my.Initialize = function () {
+    my.Initialize = function () {        
         my.CarouselSlider();
+        $("article.widget-Slider").show();
         $("div.sponsor-images img").hide();
         my.StartSlideshow();
+        $("div.sponsor-images").show();
     };
 
     my.StartSlideshow = function () {

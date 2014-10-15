@@ -23,8 +23,8 @@ namespace ivNet.Webstore.Controllers {
         }
 
         [HttpPost]
-        public ActionResult Add(int id) {
-            _shoppingCart.Add(id);
+        public ActionResult Add(int id, string size) {
+            _shoppingCart.Add(id, size);
             return RedirectToAction("Index");
         }
 
@@ -96,7 +96,9 @@ namespace ivNet.Webstore.Controllers {
                 where key.Substring(0, 3) == "prd"
                 select new UpdateShoppingCartItemVM
                 {
-                    ProductId = Convert.ToInt32(key.Substring(3)), Quantity = Convert.ToInt32(form[key])
+                    ProductId = Convert.ToInt32(key.Substring(3)),
+                    Quantity = Convert.ToInt32(form[key]),
+                    Size = form["size" + key.Substring(3)]
                 }).ToList();
 
             if (items.Count == 0) return;
@@ -105,7 +107,7 @@ namespace ivNet.Webstore.Controllers {
 
             _shoppingCart.AddRange(items
                 .Where(item => !item.IsRemoved)
-                .Select(item => new ShoppingCartItem(item.ProductId, item.Quantity < 0 ? 0 : item.Quantity))
+                .Select(item => new ShoppingCartItem(item.ProductId, item.Size, item.Quantity < 0 ? 0 : item.Quantity))
             );
 
             _shoppingCart.UpdateItems();

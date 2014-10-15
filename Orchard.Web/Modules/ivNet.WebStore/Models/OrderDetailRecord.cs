@@ -6,6 +6,7 @@ namespace ivNet.Webstore.Models {
         public virtual int Quantity { get; set; }
         public virtual decimal UnitPrice { get; set; }
         public virtual decimal VatRate { get; set; }
+        public virtual string Size { get; set; }
 
         public virtual decimal UnitVat
         {

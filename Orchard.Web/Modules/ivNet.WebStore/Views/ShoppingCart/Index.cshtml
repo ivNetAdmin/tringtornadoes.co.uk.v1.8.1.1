@@ -24,23 +24,29 @@
                             <tr>
                                 <td>Item</td>
                                 <td class="numeric">Price</td>
+                                <td class="size">Size</td>
                                 <td class="numeric">Quantity</td>
-                                <td class="numeric">Total</td>
+                                <td class="numeric">Total</td>                                
                                 <td class="action"></td>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in shopitems">
+                            <tr ng-repeat="item in shopitems"> 
                                 <td>{{ item.Title }}</td>
                                 <td>{{ item.Price | currency : "£" }}</td>
-                                <td><input name="prd{{item.ProductId}}" type="number" ng-model="item.Quantity" ng-change="calculate()" min="0" /></td>
+                                <td>
+                                    <select name="size{{item.ProductId}}" ng-model="item.Size">
+                                        <option ng-repeat="option in item.Sizes">{{option}}</option>
+                                    </select>
+                                </td>
+                                <td><input name="prd{{item.ProductId}}" type="number" ng-model="item.Quantity" ng-change="calculate()" min="0" /></td>                                
                                 <td>{{ (item.Quantity *  item.Price) | currency : "£"  }}</td>
                                 <td><span class="icon delete postback" ng-click="removeItem(item.ProductId)"></span></td>
                             </tr>
                         </tbody>
 
                         <tfoot>
-                            <tr><td colspan="5">&nbsp;</td></tr>
+                            <tr><td colspan="6">&nbsp;</td></tr>
                             <tr>
                                 <td class="numeric label" colspan="3">Subtotal:</td>
                                 <td class="numeric">{{subtotal | currency : "£"}}</td>
@@ -63,7 +69,7 @@
                         <div class="group">
                             <div class="align left"><button type="submit" name="command" value="ContinueShopping">Continue shopping</button></div>
                             <div class="align right"><button type="submit" name="command" value="Checkout">Proceed to checkout</button></div>
-                            <input type="button" onclick="testSubmit()"/>
+                            @*<input type="button" onclick="testSubmit()"/>*@
                         </div>
                     </footer>
                 }
@@ -72,11 +78,11 @@
     </div>
 </div>
 
-<script>
+@*<script>
     function testSubmit() {
 
         $.ajax({
-            url: '@Url.Action("Test", "Order", new { area = "ivNet.Webstore" })',
+            url: '@Url.Action("Test", "Order", new { area = "ivNet.Webstore", id="1037", status=1 })',
             type: 'GET',
             dataType: 'json',
            
@@ -85,4 +91,4 @@
             }
         });
     }
-</script>
+</script>*@

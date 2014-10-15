@@ -225,6 +225,10 @@
       <Project>{66FCCD76-2761-47E3-8D11-B45D0001DDAA}</Project>
       <Name>Orchard.Autoroute</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Orchard.Fields\Orchard.Fields.csproj">
+      <Project>{3787DDE5-E5C8-4841-BDA7-DCB325388064}</Project>
+      <Name>Orchard.Fields</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orchard.Users\Orchard.Users.csproj">
       <Project>{79AED36E-ABD0-4747-93D3-8722B042454B}</Project>
       <Name>Orchard.Users</Name>
