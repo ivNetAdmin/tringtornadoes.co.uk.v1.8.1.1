@@ -55,23 +55,13 @@
   </Dependency>
   <Dependency>
     <ModuleName>dsc.CalendarWidget</ModuleName>
-    <VirtualPath>~/Modules/dsc.CalendarWidget/bin/dsc.CalendarWidget.dll</VirtualPath>
-    <LoaderName>PrecompiledExtensionLoader</LoaderName>
+    <VirtualPath>~/Modules/dsc.CalendarWidget/dsc.CalendarWidget.csproj</VirtualPath>
+    <LoaderName>DynamicExtensionLoader</LoaderName>
     <References>
-      <Reference>
-        <Name>Orchard.Forms</Name>
-        <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Forms/bin/Orchard.Forms.dll</VirtualPath>
-      </Reference>
       <Reference>
         <Name>Orchard.Projections</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
         <VirtualPath>~/Modules/Orchard.Projections/bin/Orchard.Projections.dll</VirtualPath>
-      </Reference>
-      <Reference>
-        <Name>Orchard.Tokens</Name>
-        <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Tokens/bin/Orchard.Tokens.dll</VirtualPath>
       </Reference>
     </References>
   </Dependency>
@@ -117,6 +107,12 @@
     <References />
   </Dependency>
   <Dependency>
+    <ModuleName>Orchard.Users</ModuleName>
+    <VirtualPath>~/Modules/Orchard.Users/bin/Orchard.Users.dll</VirtualPath>
+    <LoaderName>PrecompiledExtensionLoader</LoaderName>
+    <References />
+  </Dependency>
+  <Dependency>
     <ModuleName>Orchard.Scripting</ModuleName>
     <VirtualPath>~/Modules/Orchard.Scripting/bin/Orchard.Scripting.dll</VirtualPath>
     <LoaderName>PrecompiledExtensionLoader</LoaderName>
@@ -125,12 +121,6 @@
   <Dependency>
     <ModuleName>Orchard.Themes</ModuleName>
     <VirtualPath>~/Modules/Orchard.Themes/bin/Orchard.Themes.dll</VirtualPath>
-    <LoaderName>PrecompiledExtensionLoader</LoaderName>
-    <References />
-  </Dependency>
-  <Dependency>
-    <ModuleName>Orchard.Users</ModuleName>
-    <VirtualPath>~/Modules/Orchard.Users/bin/Orchard.Users.dll</VirtualPath>
     <LoaderName>PrecompiledExtensionLoader</LoaderName>
     <References />
   </Dependency>
@@ -153,14 +143,9 @@
   </Dependency>
   <Dependency>
     <ModuleName>ivNet.WebStore</ModuleName>
-    <VirtualPath>~/Modules/ivNet.WebStore/bin/ivNet.WebStore.dll</VirtualPath>
-    <LoaderName>PrecompiledExtensionLoader</LoaderName>
+    <VirtualPath>~/Modules/ivNet.WebStore/ivNet.WebStore.csproj</VirtualPath>
+    <LoaderName>DynamicExtensionLoader</LoaderName>
     <References>
-      <Reference>
-        <Name>Orchard.Alias</Name>
-        <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Alias/bin/Orchard.Alias.dll</VirtualPath>
-      </Reference>
       <Reference>
         <Name>Orchard.Autoroute</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
@@ -172,21 +157,6 @@
         <VirtualPath>~/Modules/Orchard.Fields/bin/Orchard.Fields.dll</VirtualPath>
       </Reference>
       <Reference>
-        <Name>Orchard.Scripting</Name>
-        <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Scripting/bin/Orchard.Scripting.dll</VirtualPath>
-      </Reference>
-      <Reference>
-        <Name>Orchard.Themes</Name>
-        <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Themes/bin/Orchard.Themes.dll</VirtualPath>
-      </Reference>
-      <Reference>
-        <Name>Orchard.Tokens</Name>
-        <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Tokens/bin/Orchard.Tokens.dll</VirtualPath>
-      </Reference>
-      <Reference>
         <Name>Orchard.Users</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
         <VirtualPath>~/Modules/Orchard.Users/bin/Orchard.Users.dll</VirtualPath>
@@ -195,16 +165,6 @@
         <Name>Orchard.Widgets</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
         <VirtualPath>~/Modules/Orchard.Widgets/bin/Orchard.Widgets.dll</VirtualPath>
-      </Reference>
-      <Reference>
-        <Name>PayPalCoreSDK</Name>
-        <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/ivNet.WebStore/bin/PayPalCoreSDK.dll</VirtualPath>
-      </Reference>
-      <Reference>
-        <Name>RestApiSDK</Name>
-        <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/ivNet.WebStore/bin/RestApiSDK.dll</VirtualPath>
       </Reference>
     </References>
   </Dependency>
