@@ -270,4 +270,7 @@ article.widget-Slider {
 .label {
   color: gray;
 }
+form#paypalForm img {
+  cursor: pointer;
+}
 /*# sourceMappingURL=Theme.css.map */
