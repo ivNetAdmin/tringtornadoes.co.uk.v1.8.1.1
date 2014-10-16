@@ -106,7 +106,7 @@ else {
     
             <article>
                 <div class="group">
-                    <div class="align left"><a href="#">@T("Cancel")</a></div>
+                    <div class="align left"><a href="@Url.Action("Index", "ShoppingCart", new { area = "ivNet.Webstore" })">@T("Cancel")</a></div>
                     <div class="align right">
                         @*@using (Html.BeginFormAntiForgeryPost(Url.Action("Create", "Order", new { area = "ivNet.Webstore" }))) {
                     <button type="submit">Place Order</button>
